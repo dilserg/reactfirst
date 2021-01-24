@@ -1,0 +1,14 @@
+.info{
+    grid-area: info;
+    background-color: #1d1d1d;
+    padding: 10px;
+    letter-spacing: 1px;
+}
+.name{
+    margin-bottom: 20px;
+}
+.full{
+    display: none;
+    margin-top:-20px ;
+    grid-area: full;
+}

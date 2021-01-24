@@ -1,0 +1,52 @@
+.post{
+    display: grid;
+    grid-template-columns: 60px auto;
+    grid-template-areas: "ava name"
+                        "ava date"
+                        "content content"
+                        "hr hr"
+                        "likes likes";
+    background-color: rgba(255,255,255,0.1);
+    margin: 20px;
+    padding: 10px;
+}
+.icon{
+    padding: 0 5px;
+    height: 20px;
+    filter:  invert(100%) sepia(0%) saturate(384%) hue-rotate(21deg) brightness(114%) contrast(100%);
+}
+.name{
+    grid-area: name;
+    margin-bottom: 10px;
+}
+.date{
+    color: #b0b0b0;
+    grid-area: date;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+.content{
+    grid-area: content;
+
+}
+.likes{
+    grid-area: likes;
+}
+.likes_text{
+    margin-right: 15px;
+
+}
+.likes_count{
+
+}
+.ava{
+    padding-top: 5px;
+    grid-area: ava;
+}
+.hr{
+    grid-area: hr;
+}
+.name a{
+    text-decoration: none;
+    color: white;
+}

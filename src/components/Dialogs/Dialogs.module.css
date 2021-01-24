@@ -1,0 +1,12 @@
+.dialogs{
+    background-color: #3c3c3c;
+    padding: 20px;
+    display: grid;
+    column-gap: 20px;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 1fr auto;
+    grid-template-areas: "sidebar content";
+}
+.sidebar{
+    grid-area: sidebar;
+}

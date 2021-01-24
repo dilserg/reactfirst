@@ -1,0 +1,32 @@
+.content {
+    display: grid;
+    color: white;
+    padding: 20px;
+    background-color: #3c3c3c;
+    font-size: 30px;
+    min-height: 500px;
+    grid-template-areas: "avatar info"
+                        ". full"
+                        ". posts";
+    grid-template-columns: 240px auto;
+    row-gap: 20px;
+}
+.avatar img{
+    height: 200px;
+}
+.avatar{
+    padding: 10px;
+    grid-area: avatar;
+}
+.button{
+    width: 200px;
+    height: 30px;
+    outline: none;
+    border: none;
+    font-size: 20px;
+    color: #646464;
+    background-color: #1d1d1d;
+}
+.button:hover{
+    background-color: rgba(255,255,255,0.5);
+}
