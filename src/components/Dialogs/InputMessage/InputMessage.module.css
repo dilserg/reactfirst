@@ -1,13 +1,15 @@
 .input{
-    position: absolute;
-    bottom: 0;
+
+    margin-left: -20px;
+    grid-area: input;
 }
 .textarea{
+
     resize: none;
     padding: 5px 0;
-    font-size: 30px;
+    font-size: 20px;
     height: 40px;
-    width: calc(100% - 43px);
+    width: 98%;
     background-color: #c8c8c8;
     margin: 20px 20px 0 20px;
     outline: none;

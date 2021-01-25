@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Dialogs.module.css";
 import SidebarMessage from "./SidebarMessage/SidebarMessage";
 import Dialog from "./Dialog/Dialog";
+import InputMessage from "./InputMessage/InputMessage";
 
 
 
@@ -18,7 +19,7 @@ const Dialogs = (props) => {
         {messages}
       </div>
       <Dialog DialogMessages={props.DialogMessages}/>
-
+      <InputMessage/>
     </div>
   );
 };
