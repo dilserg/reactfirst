@@ -18,6 +18,7 @@ const Dialogs = (props) => {
         {messages}
       </div>
       <Dialog DialogMessages={props.DialogMessages}/>
+
     </div>
   );
 };

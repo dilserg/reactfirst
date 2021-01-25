@@ -2,13 +2,14 @@ import React from "react";
 import style from "./Dialog.module.css"
 import DialogMessage from "./DialogeMessage/DialogMessage";
 import SelfDialogMessage from "./DialogeMessage/SelfDialogMessage";
+import InputMessage from "./InputMessage/InputMessage";
 
 
 
 
 
 const Dialog = (props) =>{
-  let array = props.DialogMessages.map((message)=>{
+  let DialogMessages = props.DialogMessages.map((message)=>{
     if (message.name === "Self"){
       return <SelfDialogMessage message={message.content}/>
     }
@@ -20,7 +21,8 @@ const Dialog = (props) =>{
   
   return(
     <div className={style.content}>
-      {array}
+      {DialogMessages}
+      <InputMessage/>
     </div>
   )
 }
