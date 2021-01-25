@@ -12,8 +12,15 @@ const App = (props) => {
         <Header/>
         <Menu/>
         <div className="content">
-          <Route path="/profile" render={() => <Profile addPost={props.addPost} state={props.state} />} />
-          <Route path="/dialogs" render={() => <Dialogs scrollDown={props.scrollDown} sendMessage={props.sendMessage} state={props.state} />} />
+          <Route path="/profile" render={() => <Profile showFull={props.showFull}
+                                                        addPost={props.addPost}
+                                                        state={props.state}
+                                                        postsText={props.postsText}
+                                                        updatePostText={props.updatePostText}/>} />
+          
+          <Route path="/dialogs" render={() => <Dialogs scrollDown={props.scrollDown}
+                                                        sendMessage={props.sendMessage}
+                                                        state={props.state} />} />
         </div>
       </div>
     </BrowserRouter>

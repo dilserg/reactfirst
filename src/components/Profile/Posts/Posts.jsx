@@ -4,11 +4,17 @@ import Post from "./Post/Post";
 
 
 const Posts = (props) => {
+  
   let postText = React.createRef();
+  
   const addPost = () =>{
     const text = postText.current.value;
-    postText.current.value = "";
     props.addPost(text);
+  }
+  
+  const updateText = () =>{
+    const text = postText.current.value;
+    props.updatePostText(text);
   }
   
   let postsData = props.postsData;
@@ -19,7 +25,7 @@ const Posts = (props) => {
   return (
     <div className={styles.posts}>
       <div>
-        <textarea ref={postText} placeholder="What's new?" className={styles.input}/>
+        <textarea onChange={updateText} value={props.postsText} ref={postText} placeholder="What's new?" className={styles.input}/>
         <button onClick={addPost} className={styles.button}>Add post</button>
       </div>
       {postsData}

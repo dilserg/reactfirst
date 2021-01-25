@@ -14,9 +14,12 @@ const Profile = (props) => {
         <img src={ava} alt=""/><br/>
         <button className={styles.button}>Edit</button>
       </div>
-      <Info personInfo={props.state.personInfo}/>
-      <FullInfo/>
-      <Posts addPost={props.addPost} postsData={props.state.postsData}/>
+      <Info showFull={props.showFull} personInfo={props.state.personInfo}/>
+      <FullInfo />
+      <Posts  addPost={props.addPost}
+              updatePostText={props.updatePostText}
+              postsText={props.postsText}
+              postsData={props.state.postsData}/>
     </div>
   )
 }

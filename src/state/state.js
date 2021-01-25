@@ -59,28 +59,38 @@ const state = {
       photo: MyPhoto,
     },
   ],
+  postText:""
 }
 
-export const addPost = (data) =>{
-  state.postsData.unshift({
-    name:"Ilya",
-    surname:"Davydov",
-    date:"25 Jan 2021",
-    content: data,
-    likesCount: 0,
-    photo: MyPhoto
-  });
-  renderTree(state)
+export const addPost = () =>{
+  const text = state.postText;
+  if (text) {
+    state.postsData.unshift({
+      name: "Ilya",
+      surname: "Davydov",
+      date: "25 Jan 2021",
+      content: text,
+      likesCount: 0,
+      photo: MyPhoto
+    });
+    state.postText = "";
+    renderTree(state)
+  }
 }
 
 export const sendMessage = (text) =>{
-  state.DialogMessages.push({
-    name:"Self",
-    content: text,
-    photo: MyPhoto
-  });
-  renderTree(state);
-  scrollDown();
+  text = text.trim();
+  if (text) {
+    state.DialogMessages.push({
+      name: "Self",
+      content: text,
+      photo: MyPhoto
+    });
+  
+    renderTree(state);
+  }
+    scrollDown();
+  
 }
 
 export const scrollDown = () =>{
@@ -89,5 +99,23 @@ export const scrollDown = () =>{
     block.scrollTop = block.scrollHeight+100;
   },1);
 }
+
+export const showFull = () =>{
+  const button = document.querySelector(".info_full");
+  if (button.classList.contains("info_hide")){
+    button.classList.remove("info_hide");
+  }
+  else{
+    button.classList.add("info_hide");
+  }
+}
+
+export const updatePostText = (newText) =>{
+  state.postText = newText;
+  
+  renderTree(state);
+}
+
+window.state = state; // удалить!
 
 export default state;

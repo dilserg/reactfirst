@@ -16,7 +16,7 @@ const Description = (props) => {
         <span className={styles.dim}>University:</span>
         <span className={styles.info}>{props.info.university}</span>
       </p>
-      <button className={styles.button}>Show full information</button>
+      <button onClick={()=>props.showFull()} className={styles.button}>Show full information</button>
     </div>
   );
 };
