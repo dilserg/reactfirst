@@ -15,12 +15,13 @@ const App = (props) => {
           <Route path="/profile" render={() => <Profile showFull={props.showFull}
                                                         addPost={props.addPost}
                                                         state={props.state}
-                                                        postsText={props.postsText}
+                                                        postInputText={props.state.postInputText}
                                                         updatePostText={props.updatePostText}/>} />
           
           <Route path="/dialogs" render={() => <Dialogs scrollDown={props.scrollDown}
                                                         sendMessage={props.sendMessage}
-                                                        state={props.state} />} />
+                                                        state={props.state}
+                                                        updateInputMessage={props.updateInputMessage}/>} />
         </div>
       </div>
     </BrowserRouter>

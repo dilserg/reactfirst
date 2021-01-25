@@ -8,7 +8,7 @@ import SelfDialogMessage from "./DialogeMessage/SelfDialogMessage";
 
 
 const Dialog = (props) =>{
-  let DialogMessages = props.DialogMessages.map((message)=>{
+  let dialogMessages = props.dialogMessages.map((message)=>{
     if (message.name === "Self"){
       return <SelfDialogMessage photo={message.photo} message={message.content}/>
     }
@@ -20,7 +20,7 @@ const Dialog = (props) =>{
   
   return(
     <div className={`${style.content} scroll_down`}>
-      {DialogMessages}
+      {dialogMessages}
     </div>
   )
 }

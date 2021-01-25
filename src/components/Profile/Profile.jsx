@@ -18,7 +18,7 @@ const Profile = (props) => {
       <FullInfo />
       <Posts  addPost={props.addPost}
               updatePostText={props.updatePostText}
-              postsText={props.postsText}
+              postInputText={props.postInputText}
               postsData={props.state.postsData}/>
     </div>
   )

@@ -16,8 +16,8 @@ const Dialogs = (props) => {
         {messages}
       </div>
       <div className={styles.wrapper}>
-        <Dialog DialogMessages={props.state.DialogMessages}/>
-        <InputMessage sendMessage={props.sendMessage}/>
+        <Dialog dialogMessages={props.state.dialogMessages}/>
+        <InputMessage messageInputText={props.state.messageInputText} updateInputMessage={props.updateInputMessage} sendMessage={props.sendMessage}/>
       </div>
     
     </div>

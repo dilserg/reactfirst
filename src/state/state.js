@@ -1,15 +1,17 @@
 import MyPhoto from "C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png"
 import FemalePhoto from "C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Female.png"
-import {renderTree} from "../render";
 
+let rerenderTree = () =>{
+  console.log(1);
+}
 
 const state = {
-  personInfo:{
-    name:"Ilya",
-    surname:"Davydov",
-    city:"Kaluga",
-    age:18,
-    university:"MISIS"
+  personInfo: {
+    name: "Ilya",
+    surname: "Davydov",
+    city: "Kaluga",
+    age: 18,
+    university: "MISIS"
   },
   messages: [
     {id: 1, name: "Nadezhda", content: "Hello"},
@@ -17,18 +19,18 @@ const state = {
     {id: 3, name: "Alexey", content: "Hello"},
     {id: 4, name: "Ekaterina", content: "Hello"},
   ],
-  DialogMessages: [
+  dialogMessages: [
     {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-    {name: "Self", content: "Hello!", photo:MyPhoto},
+    {name: "Self", content: "Hello!", photo: MyPhoto},
     {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-    {name: "Self", content: "Hello!", photo:MyPhoto},
+    {name: "Self", content: "Hello!", photo: MyPhoto},
     {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-    {name: "Self", content: "Hello!", photo:MyPhoto},
+    {name: "Self", content: "Hello!", photo: MyPhoto},
     {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-    {name: "Self", content: "Hello!", photo:MyPhoto},
+    {name: "Self", content: "Hello!", photo: MyPhoto},
     {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-    {name: "Self", content: "Hello!", photo:MyPhoto},
-
+    {name: "Self", content: "Hello!", photo: MyPhoto},
+  
   ],
   postsData: [
     {
@@ -59,11 +61,12 @@ const state = {
       photo: MyPhoto,
     },
   ],
-  postText:""
+  postInputText: "",
+  messageInputText: "",
 }
 
-export const addPost = () =>{
-  const text = state.postText;
+export const addPost = () => {
+  const text = state.postInputText;
   if (text) {
     state.postsData.unshift({
       name: "Ilya",
@@ -72,48 +75,55 @@ export const addPost = () =>{
       content: text,
       likesCount: 0,
       photo: MyPhoto
-    });
-    state.postText = "";
-    renderTree(state)
+    })
+    state.postInputText = "";
+    rerenderTree(state);
   }
 }
 
-export const sendMessage = (text) =>{
-  text = text.trim();
+export const sendMessage = () => {
+  let text = state.messageInputText.trim();
   if (text) {
-    state.DialogMessages.push({
+    state.dialogMessages.push({
       name: "Self",
       content: text,
       photo: MyPhoto
     });
-  
-    renderTree(state);
+    state.messageInputText = "";
+    rerenderTree(state);
+    
   }
-    scrollDown();
-  
+  scrollDown()
 }
 
-export const scrollDown = () =>{
+export const scrollDown = () => {
   const block = document.querySelector(".scroll_down")
-  setTimeout(()=>{
-    block.scrollTop = block.scrollHeight+100;
-  },1);
+  setTimeout(() => {
+    block.scrollTop = block.scrollHeight + 100;
+  }, 1);
 }
 
-export const showFull = () =>{
+export const showFull = () => {
   const button = document.querySelector(".info_full");
-  if (button.classList.contains("info_hide")){
+  if (button.classList.contains("info_hide")) {
     button.classList.remove("info_hide");
-  }
-  else{
+  } else {
     button.classList.add("info_hide");
   }
 }
 
-export const updatePostText = (newText) =>{
-  state.postText = newText;
-  
-  renderTree(state);
+export const updatePostText = (newText) => {
+  state.postInputText = newText;
+  rerenderTree(state);
+}
+
+export const updateInputMessage = newText => {
+  state.messageInputText = newText;
+  rerenderTree(state);
+}
+
+export const subscribe = observer =>{
+  rerenderTree = observer;
 }
 
 window.state = state; // удалить!
