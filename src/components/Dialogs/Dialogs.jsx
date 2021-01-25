@@ -5,11 +5,8 @@ import Dialog from "./Dialog/Dialog";
 import InputMessage from "./InputMessage/InputMessage";
 
 
-
-
-
 const Dialogs = (props) => {
-  let messages = props.messages.map((message)=>{
+  let messages = props.messages.map((message) => {
     return <SidebarMessage name={message.name} content={message.content} id={message.id}/>
   })
   
@@ -18,8 +15,11 @@ const Dialogs = (props) => {
       <div className={styles.sidebar}>
         {messages}
       </div>
-      <Dialog DialogMessages={props.DialogMessages}/>
-      <InputMessage/>
+      <div className={styles.wrapper}>
+        <Dialog DialogMessages={props.DialogMessages}/>
+        <InputMessage/>
+      </div>
+    
     </div>
   );
 };

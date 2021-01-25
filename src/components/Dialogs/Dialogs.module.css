@@ -1,17 +1,22 @@
 .dialogs{
-    max-width: 1500px;
     background-color: #3c3c3c;
     padding: 20px;
     display: grid;
     column-gap: 10px;
     grid-template-columns: 200px minmax(200px, auto);
-    grid-template-rows: auto 50px;
-    grid-template-areas: "sidebar content"
-                         "sidebar input";
+    grid-template-areas: "sidebar wrapper";
 }
 .sidebar{
+    height: 75vh;
     padding-right: 10px;
     grid-area: sidebar;
     overflow-y: auto;
-    max-height: 500px;
+}
+.wrapper{
+    grid-area: wrapper;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-content: stretch;
+    min-height: 100%;
 }

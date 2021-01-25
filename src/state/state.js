@@ -15,6 +15,7 @@ let state = {
     {id: 3, name: "Alexey", content: "Hello"},
     {id: 4, name: "Ekaterina", content: "Hello"},
     
+    
   ],
   DialogMessages: [
     {name: "Nadezhda", content: "hello,friend!"},

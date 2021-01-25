@@ -1,18 +1,32 @@
 .input{
+    position: relative;
+    flex: 0 1 auto;
 
     margin-left: -20px;
     grid-area: input;
 }
 .textarea{
-
     resize: none;
     padding: 5px 0;
     font-size: 20px;
     height: 40px;
-    width: 98%;
+    width: 90%;
     background-color: #c8c8c8;
     margin: 20px 20px 0 20px;
     outline: none;
     box-shadow: none;
     border: none;
+}
+.send_button{
+    top: 20px;
+    right: 30px;
+    position: absolute;
+    background-color: #646464;
+    font-size: 20px;
+    border: none;
+    height: 35px;
+    width: 5%;
+}
+.send_button:hover{
+    background-color: #4a4a4a;
 }
