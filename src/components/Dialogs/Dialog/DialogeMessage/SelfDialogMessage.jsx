@@ -1,15 +1,16 @@
 import React from 'react';
-import style from './DialogeMessage.module.css'
+import styles from './DialogeMessage.module.css'
+import {NavLink} from "react-router-dom";
 
 const SelfDialogMessage = (props) => {
   return (
-    <div className={`${style.message} ${style.self}`}>
-      <div className={style.name}>
-        <a className={style.name} href="profile">
+    <div className={`${styles.message} ${styles.self}`}>
+      <div className={styles.name}>
+        <NavLink activeClassName={styles.active} className={styles.name} to="/profile">
           You
-        </a>
+        </NavLink>
       </div>
-      <div className={style.content}>
+      <div className={styles.content}>
         {props.message}
       </div>
     </div>
