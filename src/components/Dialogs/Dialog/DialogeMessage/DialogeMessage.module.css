@@ -1,8 +1,19 @@
 .self{
-    background-color: rgba(255,255,255,0.2);
-    right: 0;
+    background-color: rgba(255,255,255,0.05);
+}
+.content{
+    padding-top: 10px;
+    grid-area: text;
+}
+.photo img{
+    height: 70px;
+
+}
+.photo{
+    grid-area: photo;
 }
 .name {
+    grid-area: name;
     color: white;
     text-decoration: none;
     font-size: 25px;
@@ -11,8 +22,12 @@
 
 }
 .message{
+    grid-template: 1fr 1fr / 90px 1fr;
+    display: grid;
+    grid-template-areas: "photo name"
+                        "photo text";
     padding: 5px;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     width: 99%;
     font-family: Arial;
     font-size: 20px;

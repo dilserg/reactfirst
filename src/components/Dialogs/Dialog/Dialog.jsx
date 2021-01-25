@@ -10,16 +10,16 @@ import SelfDialogMessage from "./DialogeMessage/SelfDialogMessage";
 const Dialog = (props) =>{
   let DialogMessages = props.DialogMessages.map((message)=>{
     if (message.name === "Self"){
-      return <SelfDialogMessage message={message.content}/>
+      return <SelfDialogMessage photo={message.photo} message={message.content}/>
     }
     else {
-      return <DialogMessage name={message.name} message={message.content}/>
+      return <DialogMessage photo={message.photo} name={message.name} message={message.content}/>
     }
   })
   
   
   return(
-    <div className={style.content}>
+    <div className={`${style.content} scroll_down`}>
       {DialogMessages}
     </div>
   )

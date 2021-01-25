@@ -2,11 +2,12 @@ import React from 'react';
 import styles from "./InputMessage.module.css"
 import TextareaAutosize from 'react-textarea-autosize';
 
-const InputMessage = () => {
+const InputMessage = (props) => {
   let messageText= React.createRef();
   const sendMessage = () =>{
     const text = messageText.current.value;
-    alert(text)
+    props.sendMessage(text);
+    messageText.current.value = "";
   }
   
   

@@ -1,4 +1,5 @@
 import MyPhoto from "C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png"
+import FemalePhoto from "C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Female.png"
 import {renderTree} from "../render";
 
 
@@ -17,18 +18,17 @@ const state = {
     {id: 4, name: "Ekaterina", content: "Hello"},
   ],
   DialogMessages: [
-    {name: "Nadezhda", content: "hello,friend!"},
-    {name: "Self", content: "Hello!"},
-    {name: "Nadezhda", content: "hello,friend!"},
-    {name: "Self", content: "Hello!"},
-    {name: "Nadezhda", content: "hello,friend!"},
-    {name: "Self", content: "Hello!"},
-    {name: "Nadezhda", content: "hello,friend!"},
-    {name: "Self", content: "Hello!"},
-    {name: "Nadezhda", content: "hello,friend!"},
-    {name: "Self", content: "Hello!"},
-    {name: "Nadezhda", content: "hello,friend!"},
-    {name: "Self", content: "Hello!"},
+    {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+    {name: "Self", content: "Hello!", photo:MyPhoto},
+    {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+    {name: "Self", content: "Hello!", photo:MyPhoto},
+    {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+    {name: "Self", content: "Hello!", photo:MyPhoto},
+    {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+    {name: "Self", content: "Hello!", photo:MyPhoto},
+    {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+    {name: "Self", content: "Hello!", photo:MyPhoto},
+
   ],
   postsData: [
     {
@@ -62,7 +62,7 @@ const state = {
 }
 
 export const addPost = (data) =>{
-  state.postsData.push({
+  state.postsData.unshift({
     name:"Ilya",
     surname:"Davydov",
     date:"25 Jan 2021",
@@ -71,6 +71,23 @@ export const addPost = (data) =>{
     photo: MyPhoto
   });
   renderTree(state)
+}
+
+export const sendMessage = (text) =>{
+  state.DialogMessages.push({
+    name:"Self",
+    content: text,
+    photo: MyPhoto
+  });
+  renderTree(state);
+  scrollDown();
+}
+
+export const scrollDown = () =>{
+  const block = document.querySelector(".scroll_down")
+  setTimeout(()=>{
+    block.scrollTop = block.scrollHeight+100;
+  },1);
 }
 
 export default state;

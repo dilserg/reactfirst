@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from './DialogeMessage.module.css'
 import {NavLink} from "react-router-dom";
+import style from "./DialogeMessage.module.css";
 
 const SelfDialogMessage = (props) => {
   return (
     <div className={`${styles.message} ${styles.self}`}>
+      <div className={style.photo}>
+        <img src={props.photo} alt=""/>
+      </div>
       <div className={styles.name}>
         <NavLink activeClassName={styles.active} className={styles.name} to="/profile">
           You

@@ -3,8 +3,11 @@ import styles from "./SidebarMessage.module.css"
 import {NavLink} from "react-router-dom";
 
 const SidebarMessage = (props) => {
+  
+  
+  
   return (
-    <NavLink activeClassName={styles.active} className={styles.link} to={`/dialogs/id${props.id}`}>
+    <NavLink onClick={()=>props.scrollDown()} activeClassName={styles.active} className={styles.link} to={`/dialogs/id${props.id}`}>
       <div className={styles.message}>
         <div className={styles.name}>
             {props.name}
