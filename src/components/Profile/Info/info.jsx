@@ -6,9 +6,9 @@ const Info = (props) => {
   return (
     <div className={styles.info}>
       <div className={styles.name}>
-        {props.name} {props.surname}
+        {props.personInfo.name} {props.personInfo.surname}
       </div>
-      <Description age={12}/>
+      <Description info={props.personInfo}/>
     </div>
   );
 };

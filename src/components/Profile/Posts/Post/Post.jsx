@@ -22,7 +22,7 @@ const Post = (props) => {
       <div className={styles.likes}>
         <img className={styles.icon} src={like} alt=""/>
         <span className={styles.likes_text}>Likes:</span>
-        <span className={styles.likes_count}>{props.LikesCount}</span>
+        <span className={styles.likes_count}>{props.likesCount}</span>
       </div>
     </div>
   );

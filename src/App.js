@@ -12,8 +12,8 @@ const App = (props) => {
         <Header/>
         <Menu/>
         <div className="content">
-          <Route path="/profile" render={() => <Profile />} />
-          <Route path="/dialogs" render={() => <Dialogs messages={props.messages} DialogMessages={props.DialogMessages}/>} />
+          <Route path="/profile" render={() => <Profile state={props.state}/>} />
+          <Route path="/dialogs" render={() => <Dialogs messages={props.state.messages} DialogMessages={props.state.DialogMessages}/>} />
         </div>
       </div>
     </BrowserRouter>

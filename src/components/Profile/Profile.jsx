@@ -5,16 +5,18 @@ import Info from "./Info/info";
 import Posts from "./Posts/Posts";
 import FullInfo from "./Info/FullInfo";
 
-const Profile = () => {
+
+
+const Profile = (props) => {
   return (
     <div className={styles.content}>
       <div className={styles.avatar}>
         <img src={ava} alt=""/><br/>
         <button className={styles.button}>Edit</button>
       </div>
-      <Info name="Ilya" surname="Davydov"/>
+      <Info personInfo={props.state.personInfo}/>
       <FullInfo/>
-      <Posts/>
+      <Posts postsData={props.state.postsData}/>
     </div>
   )
 }
