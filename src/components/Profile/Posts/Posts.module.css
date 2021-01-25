@@ -14,8 +14,11 @@
     box-shadow: none;
     border: none;
     transition: 0.5s;
+    transition-delay: 0.2s;
+
 }
 .input:focus{
+    transition-delay: 0s;
     height: 110px;
 }
 .button{

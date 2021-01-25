@@ -1,7 +1,8 @@
 import MyPhoto from "C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png"
+import {renderTree} from "../render";
 
 
-let state = {
+const state = {
   personInfo:{
     name:"Ilya",
     surname:"Davydov",
@@ -14,8 +15,6 @@ let state = {
     {id: 2, name: "Ivan", content: "Hello"},
     {id: 3, name: "Alexey", content: "Hello"},
     {id: 4, name: "Ekaterina", content: "Hello"},
-    
-    
   ],
   DialogMessages: [
     {name: "Nadezhda", content: "hello,friend!"},
@@ -59,9 +58,19 @@ let state = {
       likesCount: 53,
       photo: MyPhoto,
     },
-  ]
+  ],
 }
 
-
+export const addPost = (data) =>{
+  state.postsData.push({
+    name:"Ilya",
+    surname:"Davydov",
+    date:"25 Jan 2021",
+    content: data,
+    likesCount: 0,
+    photo: MyPhoto
+  });
+  renderTree(state)
+}
 
 export default state;

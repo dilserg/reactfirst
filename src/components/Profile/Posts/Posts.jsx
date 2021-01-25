@@ -7,7 +7,8 @@ const Posts = (props) => {
   let postText = React.createRef();
   const addPost = () =>{
     const text = postText.current.value;
-    alert(text)
+    postText.current.value = "";
+    props.addPost(text);
   }
   
   let postsData = props.postsData;
@@ -17,10 +18,10 @@ const Posts = (props) => {
   
   return (
     <div className={styles.posts}>
-      <form>
-        <textarea ref={postText} placeholder="What's new?" className={styles.input}> </textarea>
+      <div>
+        <textarea ref={postText} placeholder="What's new?" className={styles.input}/>
         <button onClick={addPost} className={styles.button}>Add post</button>
-      </form>
+      </div>
       {postsData}
     </div>
   );

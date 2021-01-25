@@ -16,7 +16,7 @@ const Profile = (props) => {
       </div>
       <Info personInfo={props.state.personInfo}/>
       <FullInfo/>
-      <Posts postsData={props.state.postsData}/>
+      <Posts addPost={props.addPost} postsData={props.state.postsData}/>
     </div>
   )
 }
