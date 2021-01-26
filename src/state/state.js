@@ -6,69 +6,73 @@ let rerenderTree = () =>{
 }
 
 const state = {
-  personInfo: {
-    name: "Ilya",
-    surname: "Davydov",
-    city: "Kaluga",
-    age: 18,
-    university: "MISIS"
+  profile:{
+    personInfo: {
+      name: "Ilya",
+      surname: "Davydov",
+      city: "Kaluga",
+      age: 18,
+      university: "MISIS"
+    },
+    postsData: [
+      {
+        postID: 0,
+        name: "Ilya",
+        surname: "Davydov",
+        date: "17 dec 2019",
+        content: "Hello, World!",
+        likesCount: 212,
+        photo: MyPhoto,
+      },
+      {
+        postID: 1,
+        name: "Ilya",
+        surname: "Davydov",
+        date: "29 oct 2019",
+        content: "How are you?",
+        likesCount: 150,
+        photo: MyPhoto,
+      },
+      {
+        postID: 2,
+        name: "Ilya",
+        surname: "Davydov",
+        date: "1 sep 2019",
+        content: "Again...",
+        likesCount: 53,
+        photo: MyPhoto,
+      },
+    ],
+    postInputText: "",
   },
-  messages: [
-    {id: 1, name: "Nadezhda", content: "Hello"},
-    {id: 2, name: "Ivan", content: "Hello"},
-    {id: 3, name: "Alexey", content: "Hello"},
-    {id: 4, name: "Ekaterina", content: "Hello"},
-  ],
-  dialogMessages: [
-    {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-    {name: "Self", content: "Hello!", photo: MyPhoto},
-    {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-    {name: "Self", content: "Hello!", photo: MyPhoto},
-    {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-    {name: "Self", content: "Hello!", photo: MyPhoto},
-    {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-    {name: "Self", content: "Hello!", photo: MyPhoto},
-    {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-    {name: "Self", content: "Hello!", photo: MyPhoto},
+  dialogs:{
+    messages: [
+      {id: 1, name: "Nadezhda", content: "Hello"},
+      {id: 2, name: "Ivan", content: "Hello"},
+      {id: 3, name: "Alexey", content: "Hello"},
+      {id: 4, name: "Ekaterina", content: "Hello"},
+    ],
+    dialogMessages: [
+      {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+      {name: "Self", content: "Hello!", photo: MyPhoto},
+      {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+      {name: "Self", content: "Hello!", photo: MyPhoto},
+      {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+      {name: "Self", content: "Hello!", photo: MyPhoto},
+      {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+      {name: "Self", content: "Hello!", photo: MyPhoto},
+      {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+      {name: "Self", content: "Hello!", photo: MyPhoto},
   
-  ],
-  postsData: [
-    {
-      postID: 0,
-      name: "Ilya",
-      surname: "Davydov",
-      date: "17 dec 2019",
-      content: "Hello, World!",
-      likesCount: 212,
-      photo: MyPhoto,
-    },
-    {
-      postID: 1,
-      name: "Ilya",
-      surname: "Davydov",
-      date: "29 oct 2019",
-      content: "How are you?",
-      likesCount: 150,
-      photo: MyPhoto,
-    },
-    {
-      postID: 2,
-      name: "Ilya",
-      surname: "Davydov",
-      date: "1 sep 2019",
-      content: "Again...",
-      likesCount: 53,
-      photo: MyPhoto,
-    },
-  ],
-  postInputText: "",
-  messageInputText: "",
+    ],
+    messageInputText: "",
+  },
 }
 
 export const addPost = () => {
-  const text = state.postInputText;
+  const text = state.profile.postInputText;
   if (text) {
-    state.postsData.unshift({
+    state.profile.postsData.unshift({
       name: "Ilya",
       surname: "Davydov",
       date: "25 Jan 2021",
@@ -76,20 +80,20 @@ export const addPost = () => {
       likesCount: 0,
       photo: MyPhoto
     })
-    state.postInputText = "";
+    state.profile.postInputText = "";
     rerenderTree(state);
   }
 }
 
 export const sendMessage = () => {
-  let text = state.messageInputText.trim();
+  let text = state.dialogs.messageInputText.trim();
   if (text) {
-    state.dialogMessages.push({
+    state.dialogs.dialogMessages.push({
       name: "Self",
       content: text,
       photo: MyPhoto
     });
-    state.messageInputText = "";
+    state.dialogs.messageInputText = "";
     rerenderTree(state);
     
   }
@@ -113,12 +117,12 @@ export const showFull = () => {
 }
 
 export const updatePostText = (newText) => {
-  state.postInputText = newText;
+  state.profile.postInputText = newText;
   rerenderTree(state);
 }
 
 export const updateInputMessage = newText => {
-  state.messageInputText = newText;
+  state.dialogs.messageInputText = newText;
   rerenderTree(state);
 }
 
