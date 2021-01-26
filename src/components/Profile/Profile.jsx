@@ -14,7 +14,7 @@ const Profile = (props) => {
         <img src={ava} alt=""/><br/>
         <button className={styles.button}>Edit</button>
       </div>
-      <Info showFull={props.showFull} info={props.profile.info}/>
+      <Info info={props.profile.info}/>
       <FullInfo />
       <Posts posts={props.profile.posts}/>
     </div>

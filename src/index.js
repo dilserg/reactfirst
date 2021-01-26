@@ -1,21 +1,14 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import state, {
-  scrollDown,
-  sendMessage,
-  showFull,
-  subscribe,
-  updateInputMessage,
-} from "./state/state";
+import state, {subscribe} from "./state/state";
 import ReactDOM from "react-dom";
 import App from "./App";
 
 const renderTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App showFull={showFull} sendMessage={sendMessage} scrollDown={scrollDown}
-           state={state} updateInputMessage={updateInputMessage} />
+      <App state={state} />
     </React.StrictMode>,
     document.getElementById('root')
   );

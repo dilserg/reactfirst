@@ -8,12 +8,13 @@ import SelfDialogMessage from "./DialogeMessage/SelfDialogMessage";
 
 
 const Dialog = (props) =>{
-  let dialogMessages = props.dialogMessages.map((message)=>{
+  
+  let dialogMessages = props.dialog.dialogMessages.map((message)=>{
     if (message.name === "Self"){
-      return <SelfDialogMessage photo={message.photo} message={message.content}/>
+      return <SelfDialogMessage photo={message.photo} message={message.content} />
     }
     else {
-      return <DialogMessage photo={message.photo} name={message.name} message={message.content}/>
+      return <DialogMessage photo={message.photo} name={message.name} message={message.content} />
     }
   })
   

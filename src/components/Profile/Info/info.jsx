@@ -9,7 +9,7 @@ const Info = (props) => {
       <div className={styles.name}>
         {props.info.personInfo.name} {props.info.personInfo.surname}
       </div>
-      <Description showFull={props.showFull} personInfo={props.info.personInfo}/>
+      <Description showFull={props.info.showFull} personInfo={props.info.personInfo}/>
     </div>
   );
 };

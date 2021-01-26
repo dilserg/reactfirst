@@ -12,15 +12,9 @@ const App = (props) => {
         <Header/>
         <Menu/>
         <div className="content">
-          <Route path="/profile"
-                 render={() => <Profile showFull={props.showFull}
-                                        profile={props.state.profile}/>}
-          />
+          <Route path="/profile" render={() => <Profile profile={props.state.profile} />} />
           
-          <Route path="/dialogs" render={() => <Dialogs scrollDown={props.scrollDown}
-                                                        sendMessage={props.sendMessage}
-                                                        dialogs={props.state.dialogs}
-                                                        updateInputMessage={props.updateInputMessage}/>} />
+          <Route path="/dialogs" render={() => <Dialogs dialogs={props.state.dialogs} />} />
         </div>
       </div>
     </BrowserRouter>

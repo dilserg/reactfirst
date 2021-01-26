@@ -15,6 +15,14 @@ const state = {
         age: 18,
         university: "MISIS"
       },
+      showFull(){
+        const button = document.querySelector(".info_full");
+        if (button.classList.contains("info_hide")) {
+          button.classList.remove("info_hide");
+        } else {
+          button.classList.add("info_hide");
+        }
+      }
     },
     posts:{
       postsData: [
@@ -78,60 +86,50 @@ const state = {
       {id: 3, name: "Alexey", content: "Hello"},
       {id: 4, name: "Ekaterina", content: "Hello"},
     ],
-    dialogMessages: [
-      {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-      {name: "Self", content: "Hello!", photo: MyPhoto},
-      {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-      {name: "Self", content: "Hello!", photo: MyPhoto},
-      {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-      {name: "Self", content: "Hello!", photo: MyPhoto},
-      {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-      {name: "Self", content: "Hello!", photo: MyPhoto},
-      {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
-      {name: "Self", content: "Hello!", photo: MyPhoto},
+    dialog:{
+      dialogMessages: [
+        {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+        {name: "Self", content: "Hello!", photo: MyPhoto},
+        {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+        {name: "Self", content: "Hello!", photo: MyPhoto},
+        {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+        {name: "Self", content: "Hello!", photo: MyPhoto},
+        {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+        {name: "Self", content: "Hello!", photo: MyPhoto},
+        {name: "Nadezhda", content: "hello,friend!", photo: FemalePhoto},
+        {name: "Self", content: "Hello!", photo: MyPhoto},
   
-    ],
-    messageInputText: "",
+      ],
+    },
+    inputMessage:{
+      messageInputText: "",
+      updateInputMessage(newText){
+        this.messageInputText = newText;
+        rerenderTree(state);
+      },
+    },
+    sendMessage(){
+      let text = this.inputMessage.messageInputText.trim();
+      if (text) {
+        this.dialog.dialogMessages.push({
+          name: "Self",
+          content: text,
+          photo: MyPhoto
+        });
+        this.inputMessage.messageInputText = "";
+        rerenderTree(state);
+      }
+      this.scrollDown()
+    },
+    scrollDown(){
+      const block = document.querySelector(".scroll_down")
+      setTimeout(() => {
+        block.scrollTop = block.scrollHeight + 100;
+      }, 1);
+    },
   },
 }
 
-
-export const sendMessage = () => {
-  let text = state.dialogs.messageInputText.trim();
-  if (text) {
-    state.dialogs.dialogMessages.push({
-      name: "Self",
-      content: text,
-      photo: MyPhoto
-    });
-    state.dialogs.messageInputText = "";
-    rerenderTree(state);
-    
-  }
-  scrollDown()
-}
-
-export const scrollDown = () => {
-  const block = document.querySelector(".scroll_down")
-  setTimeout(() => {
-    block.scrollTop = block.scrollHeight + 100;
-  }, 1);
-}
-
-export const showFull = () => {
-  const button = document.querySelector(".info_full");
-  if (button.classList.contains("info_hide")) {
-    button.classList.remove("info_hide");
-  } else {
-    button.classList.add("info_hide");
-  }
-}
-
-
-export const updateInputMessage = newText => {
-  state.dialogs.messageInputText = newText;
-  rerenderTree(state);
-}
 
 export const subscribe = observer =>{
   rerenderTree = observer;
