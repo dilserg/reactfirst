@@ -7,7 +7,7 @@ import InputMessage from "./InputMessage/InputMessage";
 
 const Dialogs = (props) => {
   let messages = props.dialogs.messages.map((message) => {
-    return <SidebarMessage scrollDown={props.dialogs.scrollDown} name={message.name} content={message.content} id={message.id}/>
+    return <SidebarMessage dispatch={props.dispatch} name={message.name} content={message.content} id={message.id}/>
   })
   
   return (
@@ -17,7 +17,8 @@ const Dialogs = (props) => {
       </div>
       <div className={styles.wrapper}>
         <Dialog dialog={props.dialogs.dialog}/>
-        <InputMessage inputMessage={props.dialogs.inputMessage} dialogs={props.dialogs}/>
+        
+        <InputMessage dispatch={props.dispatch} inputMessage={props.dialogs.inputMessage}/>
       </div>
     
     </div>

@@ -4,7 +4,7 @@ import "./full.css"
 
 const FullInfo = (props) => {
   return (
-    <div className={`${styles.info}  info_full info_hide`}>
+    <div className={`${styles.info} info_full info_hide`}>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, neque!</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Numquam, vero.</p>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dicta, perspiciatis.</p>

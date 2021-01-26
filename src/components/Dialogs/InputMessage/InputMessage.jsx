@@ -7,12 +7,11 @@ const InputMessage = (props) => {
   
   const updateMessage = () => {
     let text = messageText.current.value;
-    props.inputMessage.updateInputMessage(text);
+    props.dispatch({type:"UPDATE-INPUT-MESSAGE",newMessageText:text});
   }
   
   const sendMessage = () => {
-    const text = messageText.current.value;
-    props.dialogs.sendMessage(text);
+    props.dispatch({type:"SEND-MESSAGE"});
   }
   
   
