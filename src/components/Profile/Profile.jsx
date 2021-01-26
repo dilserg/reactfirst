@@ -14,12 +14,9 @@ const Profile = (props) => {
         <img src={ava} alt=""/><br/>
         <button className={styles.button}>Edit</button>
       </div>
-      <Info showFull={props.showFull} personInfo={props.profile.personInfo}/>
+      <Info showFull={props.showFull} info={props.profile.info}/>
       <FullInfo />
-      <Posts  addPost={props.addPost}
-              updatePostText={props.updatePostText}
-              postInputText={props.profile.postInputText}
-              postsData={props.profile.postsData}/>
+      <Posts posts={props.profile.posts}/>
     </div>
   )
 }

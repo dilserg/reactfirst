@@ -7,9 +7,9 @@ const Info = (props) => {
   return (
     <div className={styles.info}>
       <div className={styles.name}>
-        {props.personInfo.name} {props.personInfo.surname}
+        {props.info.personInfo.name} {props.info.personInfo.surname}
       </div>
-      <Description showFull={props.showFull} info={props.personInfo}/>
+      <Description showFull={props.showFull} personInfo={props.info.personInfo}/>
     </div>
   );
 };

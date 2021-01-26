@@ -7,43 +7,69 @@ let rerenderTree = () =>{
 
 const state = {
   profile:{
-    personInfo: {
-      name: "Ilya",
-      surname: "Davydov",
-      city: "Kaluga",
-      age: 18,
-      university: "MISIS"
+    info:{
+      personInfo: {
+        name: "Ilya",
+        surname: "Davydov",
+        city: "Kaluga",
+        age: 18,
+        university: "MISIS"
+      },
     },
-    postsData: [
-      {
-        postID: 0,
-        name: "Ilya",
-        surname: "Davydov",
-        date: "17 dec 2019",
-        content: "Hello, World!",
-        likesCount: 212,
-        photo: MyPhoto,
+    posts:{
+      postsData: [
+        {
+          postID: 0,
+          name: "Ilya",
+          surname: "Davydov",
+          date: "17 dec 2019",
+          content: "Hello, World!",
+          likesCount: 212,
+          photo: MyPhoto,
+        },
+        {
+          postID: 1,
+          name: "Ilya",
+          surname: "Davydov",
+          date: "29 oct 2019",
+          content: "How are you?",
+          likesCount: 150,
+          photo: MyPhoto,
+        },
+        {
+          postID: 2,
+          name: "Ilya",
+          surname: "Davydov",
+          date: "1 sep 2019",
+          content: "Again...",
+          likesCount: 53,
+          photo: MyPhoto,
+        },
+      ],
+      postInputText: "",
+      addPost(){
+        const text = this.postInputText;
+        
+        if (text) {
+          
+          this.postsData.unshift({
+            name: "Ilya",
+            surname: "Davydov",
+            date: "25 Jan 2021",
+            content: text,
+            likesCount: 0,
+            photo: MyPhoto
+          })
+          
+          this.postInputText = "";
+          rerenderTree(state);
+        }
       },
-      {
-        postID: 1,
-        name: "Ilya",
-        surname: "Davydov",
-        date: "29 oct 2019",
-        content: "How are you?",
-        likesCount: 150,
-        photo: MyPhoto,
-      },
-      {
-        postID: 2,
-        name: "Ilya",
-        surname: "Davydov",
-        date: "1 sep 2019",
-        content: "Again...",
-        likesCount: 53,
-        photo: MyPhoto,
-      },
-    ],
-    postInputText: "",
+      updatePostText(newText){
+        this.postInputText = newText;
+        rerenderTree(state);
+      }
+    }
   },
   dialogs:{
     messages: [
@@ -69,21 +95,6 @@ const state = {
   },
 }
 
-export const addPost = () => {
-  const text = state.profile.postInputText;
-  if (text) {
-    state.profile.postsData.unshift({
-      name: "Ilya",
-      surname: "Davydov",
-      date: "25 Jan 2021",
-      content: text,
-      likesCount: 0,
-      photo: MyPhoto
-    })
-    state.profile.postInputText = "";
-    rerenderTree(state);
-  }
-}
 
 export const sendMessage = () => {
   let text = state.dialogs.messageInputText.trim();
@@ -116,10 +127,6 @@ export const showFull = () => {
   }
 }
 
-export const updatePostText = (newText) => {
-  state.profile.postInputText = newText;
-  rerenderTree(state);
-}
 
 export const updateInputMessage = newText => {
   state.dialogs.messageInputText = newText;

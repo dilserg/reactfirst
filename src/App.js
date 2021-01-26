@@ -12,11 +12,10 @@ const App = (props) => {
         <Header/>
         <Menu/>
         <div className="content">
-          <Route path="/profile" render={() => <Profile showFull={props.showFull}
-                                                        addPost={props.addPost}
-                                                        profile={props.state.profile}
-                                                        postInputText={props.state.postInputText}
-                                                        updatePostText={props.updatePostText}/>} />
+          <Route path="/profile"
+                 render={() => <Profile showFull={props.showFull}
+                                        profile={props.state.profile}/>}
+          />
           
           <Route path="/dialogs" render={() => <Dialogs scrollDown={props.scrollDown}
                                                         sendMessage={props.sendMessage}
