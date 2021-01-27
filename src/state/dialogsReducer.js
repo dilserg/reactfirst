@@ -38,7 +38,7 @@ const dialogsReducer = (state=initialState, action) => {
     case "UPDATE-INPUT-MESSAGE" :
       state.inputMessage.messageInputText = action.newMessageText;
       break;
-    
+      
     
     case "SEND-MESSAGE":
       let text = state.inputMessage.messageInputText.trim();

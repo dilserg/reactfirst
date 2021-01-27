@@ -2,8 +2,8 @@ import Header from "./components/Header/Header";
 import './App.css';
 import Menu from "./components/Menu/Menu";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 const App = (props) => {
   return (
@@ -12,9 +12,9 @@ const App = (props) => {
         <Header/>
         <Menu/>
         <div className="content">
-          <Route path="/profile" render={() => <Profile store={props.store} profile={props.state.profile} dispatch={props.dispatch}/>} />
+          <Route path="/profile" render={() => <Profile store={props.store} />} />
           
-          <Route path="/dialogs" render={() => <Dialogs dialogs={props.state.dialogs} dispatch={props.dispatch}/>} />
+          <Route path="/dialogs" render={() => <DialogsContainer store={props.store} />} />
         </div>
       </div>
     </BrowserRouter>
