@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./Posts.module.css"
 import Post from "./Post/Post";
-import {updatePostTextActionCreator, addPostActionCreator} from "../../../state/state";
+import {updatePostTextActionCreator, addPostActionCreator} from "../../../state/actionCreator";
 
 const Posts = (props) => {
   

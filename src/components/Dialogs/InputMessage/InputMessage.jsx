@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "./InputMessage.module.css"
 import TextareaAutosize from 'react-textarea-autosize';
-import {updateInputMessageAction, sendMessageActionCreator} from "../../../state/state";
+import {updateInputMessageAction, sendMessageActionCreator} from "../../../state/actionCreator";
 
 const InputMessage = (props) => {
   let messageText = React.createRef();
