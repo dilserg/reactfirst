@@ -6,17 +6,19 @@ const Description = (props) => {
     <div className={styles.description}>
       <p className={styles.item}>
         <span className={styles.dim}>Age:</span>
-        <span className={styles.info}>{props.personInfo.age}</span>
+        <span className={styles.info}>{props.age}</span>
       </p>
       <p className={styles.item}>
         <span className={styles.dim}>City:</span>
-        <span className={styles.info}>{props.personInfo.city}</span>
+        <span className={styles.info}>{props.city}</span>
       </p>
       <p className={styles.item}>
         <span className={styles.dim}>University:</span>
-        <span className={styles.info}>{props.personInfo.university}</span>
+        <span className={styles.info}>{props.university}</span>
       </p>
-      <button onClick={()=>props.showFull()} className={styles.button}>Show full information</button>
+      <div>
+        <button onClick={() => console.log(1)} className={styles.button}>Show full information</button>
+      </div>
     </div>
   );
 };

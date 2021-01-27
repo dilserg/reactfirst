@@ -11,14 +11,6 @@ const initialState= {
         university: "MISIS"
       },
       
-      showFull(){
-        const button = document.querySelector(".info_full");
-        if (button.classList.contains("info_hide")) {
-          button.classList.remove("info_hide");
-        } else {
-          button.classList.add("info_hide");
-        }
-      }
     },
     
     posts:{

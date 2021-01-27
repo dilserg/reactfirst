@@ -7,7 +7,6 @@
     font-size: 30px;
     min-height: 500px;
     grid-template-areas: "avatar info"
-                        ". full"
                         ". posts";
     grid-template-columns: 240px auto;
     row-gap: 20px;

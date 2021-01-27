@@ -17,7 +17,6 @@ const Dialogs = (props) => {
       </div>
       <div className={styles.wrapper}>
         <Dialog dialog={props.dialogs.dialog}/>
-        
         <InputMessage dispatch={props.dispatch} inputMessage={props.dialogs.inputMessage}/>
       </div>
     
