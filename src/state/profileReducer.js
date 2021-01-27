@@ -50,14 +50,16 @@ const initialState= {
 }
 
 const profileReducer = (state=initialState, action) => {
+  let stateCopy = {...state}
   
   switch (action.type) {
     case "ADD-POST":
-      const text = state.posts.postInputText.trim();
+      stateCopy.posts.postsData = [...state.posts.postsData];
       
+      const text = state.posts.postInputText.trim();
       if (text) {
         
-        state.posts.postsData.unshift({
+        stateCopy.posts.postsData.unshift({
           name: "Ilya",
           surname: "Davydov",
           date: "25 Jan 2021",
@@ -66,20 +68,18 @@ const profileReducer = (state=initialState, action) => {
           photo: MyPhoto
         })
         
-        state.posts.postInputText = "";
+        stateCopy.posts.postInputText = "";
       }
-      break;
+      return stateCopy;
     
     
     case "UPDATE-POST-TEXT":
-      state.posts.postInputText = action.newPostText;
-      break;
-    
-    
+      stateCopy.posts.postInputText = action.newPostText;
+      return stateCopy;
+      
     default:
-      break;
+      return state;
   }
-  return state;
 }
 
 export default profileReducer;

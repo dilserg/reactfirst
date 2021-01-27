@@ -5,16 +5,15 @@ import PostsContainer from "./Posts/PostsContainer";
 import InfoContainer from "./Info/InfoContainer";
 
 
-
-const Profile = (props) => {
+const Profile = () => {
   return (
     <div className={styles.content}>
       <div className={styles.avatar}>
         <img src={ava} alt=""/><br/>
         <button className={styles.button}>Edit</button>
       </div>
-      <InfoContainer store={props.store}/>
-      <PostsContainer store={props.store}/>
+        <InfoContainer />
+        <PostsContainer />
     </div>
   )
 }

@@ -1,10 +1,23 @@
 import React from 'react';
 import Info from "./Info";
+import {connect} from "react-redux";
 
 
-const InfoContainer = (props) => {
-  const personInfo = props.store.getState().profile.info.personInfo
-  return <Info personInfo={personInfo} name={personInfo.name} surname={personInfo.surname}/>
-};
+let mapDispatchToProps =(dispatch) =>{
+  return {
+  
+  }
+}
+
+let mapStateToProps = (state) =>{
+  return{
+    personInfo: state.profile.info.personInfo,
+    name: state.profile.info.personInfo.name,
+    surname:state.profile.info.personInfo.surname
+  }
+}
+
+const InfoContainer = connect(mapStateToProps,mapDispatchToProps)(Info)
+
 
 export default InfoContainer;

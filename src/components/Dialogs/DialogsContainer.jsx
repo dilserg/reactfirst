@@ -1,16 +1,32 @@
 import React from "react";
 import Dialogs from "./Dialogs";
 import SidebarMessageContainer from "./SidebarMessage/SidebarMessageContainer";
+import {connect} from "react-redux";
 
 
-const DialogsContainer = (props) => {
-  const sidebarMessages = props.store.getState().dialogs.messages.map((message) => {
-    return <SidebarMessageContainer store={props.store} name={message.name} content={message.content} id={message.id}/>
-  });
+let mapStateToProps = (state) =>{
+  const sidebarMessages = state.dialogs.messages.map((message) => {
+    return <SidebarMessageContainer name={message.name} content={message.content} id={message.id}/>
+      });
   
-  const dialog = props.store.getState().dialogs.dialog;
-  const inputMessage = props.store.getState().dialogs.inputMessage;
-  return <Dialogs store={props.store} sidebarMessages={sidebarMessages} dialog={dialog} inputMessage={inputMessage}/>
-};
+  return{
+    sidebarMessages: sidebarMessages,
+    dialog: state.dialogs.dialog,
+    inputMessage: state.dialogs.inputMessage
+  }
+}
+
+let mapDispatchToProps = (dispatch) =>{
+  return {
+    scrollDown: () => {
+      const blockToScroll = document.querySelector(".scroll_down")
+      setTimeout(() => {
+        blockToScroll.scrollTop = blockToScroll.scrollHeight + 100;
+      }, 1);
+    }
+  }
+}
+
+const DialogsContainer = connect(mapStateToProps,mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;

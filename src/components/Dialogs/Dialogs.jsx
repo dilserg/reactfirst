@@ -13,6 +13,7 @@ const Dialogs = (props) => {
       </div>
       <div className={styles.wrapper}>
         <DialogContainer dialog={props.dialog}/>
+        
         <InputMessageContainer store={props.store} inputMessage={props.inputMessage} />
       </div>
     </div>

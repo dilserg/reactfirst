@@ -33,31 +33,31 @@ const initialState ={
 
 const dialogsReducer = (state=initialState, action) => {
   const blockToScroll = document.querySelector(".scroll_down")
-  
+  let stateCopy = {...state};
   switch (action.type) {
-    case "UPDATE-INPUT-MESSAGE" :
-      state.inputMessage.messageInputText = action.newMessageText;
-      break;
-      
     
-    case "SEND-MESSAGE":
-      let text = state.inputMessage.messageInputText.trim();
+    case "UPDATE-INPUT-MESSAGE" :
+      stateCopy.inputMessage.messageInputText = action.newMessageText;
+      return stateCopy;
       
+      
+    case "SEND-MESSAGE":
+      stateCopy.dialog.dialogMessages = [...state.dialog.dialogMessages];
+  
+      let text = stateCopy.inputMessage.messageInputText.trim();
       if (text) {
-        state.dialog.dialogMessages.push({
+        stateCopy.dialog.dialogMessages.push({
           name: "Self",
           content: text,
           photo: MyPhoto
         });
-        
-        state.inputMessage.messageInputText = "";
-        
+    
+        stateCopy.inputMessage.messageInputText = "";
       }
-      
       setTimeout(() => {
         blockToScroll.scrollTop = blockToScroll.scrollHeight + 100;
       }, 1);
-      break;
+      return stateCopy;
     
     
     case "SCROLL-DOWN":
@@ -66,13 +66,10 @@ const dialogsReducer = (state=initialState, action) => {
       }, 1);
       break;
     
-    
+      
     default:
-      break;
+      return state;
   }
-  
-  return state
-  
 }
 
 export default dialogsReducer;
