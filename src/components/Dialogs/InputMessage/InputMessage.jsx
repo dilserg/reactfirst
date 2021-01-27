@@ -1,17 +1,18 @@
 import React from 'react';
 import styles from "./InputMessage.module.css"
 import TextareaAutosize from 'react-textarea-autosize';
+import {updateInputMessageAction, sendMessageActionCreator} from "../../../state/state";
 
 const InputMessage = (props) => {
   let messageText = React.createRef();
   
   const updateMessage = () => {
     let text = messageText.current.value;
-    props.dispatch({type:"UPDATE-INPUT-MESSAGE",newMessageText:text});
+    props.dispatch(updateInputMessageAction(text));
   }
   
   const sendMessage = () => {
-    props.dispatch({type:"SEND-MESSAGE"});
+    props.dispatch(sendMessageActionCreator());
   }
   
   

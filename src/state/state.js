@@ -1,8 +1,9 @@
 import MyPhoto from "C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png"
 import FemalePhoto from "C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Female.png"
+import dialogsReducer from "./dialogsReducer";
+import profileReducer from "./profileReducer";
 
 const store = {
-  
   _state:{
     profile:{
       info:{
@@ -89,72 +90,41 @@ const store = {
     },
   },
   dispatch(action){
-    if (action.type ==="ADD-POST"){
-      const text = this._state.profile.posts.postInputText.trim();
-  
-      if (text) {
-    
-        this._state.profile.posts.postsData.unshift({
-          name: "Ilya",
-          surname: "Davydov",
-          date: "25 Jan 2021",
-          content: text,
-          likesCount: 0,
-          photo: MyPhoto
-        })
-    
-        this._state.profile.posts.postInputText = "";
-        this._rerenderTree(this.getState());
-      }
-    }
-    
-    else if (action.type ==="UPDATE-POST-TEXT"){
-      this._state.profile.posts.postInputText = action.newPostText;
-      this._rerenderTree(this.getState());
-    }
-    
-    else if (action.type ==="UPDATE-INPUT-MESSAGE"){
-      this._state.dialogs.inputMessage.messageInputText = action.newMessageText;
-      this._rerenderTree(this.getState());
-    }
-    
-    else if (action.type ==="SEND-MESSAGE"){
-      const text = this._state.dialogs.inputMessage.messageInputText.trim();
-  
-      if (text) {
-        this._state.dialogs.dialog.dialogMessages.push({
-          name: "Self",
-          content: text,
-          photo: MyPhoto
-        });
-    
-        this._state.dialogs.inputMessage.messageInputText = "";
-    
-        this._rerenderTree(this.getState());
-      }
-      this.dispatch({type:"SCROLL-DOWN"})
-    }
-    
-    else if (action.type ==="SCROLL-DOWN"){
-      const block = document.querySelector(".scroll_down")
-      setTimeout(() => {
-        block.scrollTop = block.scrollHeight + 100;
-      }, 1);
-    }
-    
+    this._state.dialogs = dialogsReducer(this._state.dialogs, action)
+    this._state.profile = profileReducer(this._state.profile, action)
+    this._rerenderTree(this.getState())
   },
   
   getState(){
     return this._state;
   },
+  
   _rerenderTree(){
     console.log(1);
   },
+  
   subscribe(observer){
     this._rerenderTree = observer;
   },
 }
 
+export const addPostActionCreator = () => ({type:"ADD-POST"})
+
+export const updatePostTextActionCreator = newText =>{
+  return {
+    type:"UPDATE-POST-TEXT",
+    newPostText:newText
+  };
+}
+
+export const updateInputMessageAction = newText => {
+  return{
+    type:"UPDATE-INPUT-MESSAGE",
+    newMessageText:newText
+  }
+}
+
+export const sendMessageActionCreator = () => ({type:"SEND-MESSAGE"})
 
 window.store = store; // удалить!
 
