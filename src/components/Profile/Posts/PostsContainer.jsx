@@ -1,38 +1,40 @@
 import React from 'react';
-import Post from "./Post/Post";
-import {updatePostTextActionCreator, addPostActionCreator} from "../../../state/actionCreator";
-import Posts from "./Posts";
-import {connect} from "react-redux";
+import Post from './Post/Post';
+import {updatePostTextAC, addPostAC} from '../../../state/actionCreator';
+import Posts from './Posts';
+import {connect} from 'react-redux';
+
+
 
 
 let mapStateToProps = (state) => {
   
-  let postsData = state.profile.posts.postsData.map((data)=>{
+  let postsData = state.profile.posts.postsData.map((data) => {
+    debugger
     return <Post name={`${data.name} ${data.surname}`} time={data.date} content={data.content}
-                 likesCount={data.likesCount} ava={data.photo}/>
+                 likesCount={data.likesCount} ava={data.photo}/>;
   });
   
-  return{
+  return {
     postsData: postsData,
     postInputText: state.profile.posts.postInputText,
   };
 };
 
-let mapDispatchToProps = (dispatch) =>{
-  return{
-    updateText:(postText)=>{
+let mapDispatchToProps = (dispatch) => {
+  return {
+    updateText: (postText) => {
       let text = postText.current.value;
-      dispatch(updatePostTextActionCreator(text));
+      dispatch(updatePostTextAC(text));
     },
     
-    addPost:() => {
-      dispatch(addPostActionCreator());
+    addPost: () => {
+      dispatch(addPostAC());
     }
-  }
-}
+  };
+};
 
 
-
-const PostsContainer = connect(mapStateToProps,mapDispatchToProps)(Posts);
+const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts);
 
 export default PostsContainer;

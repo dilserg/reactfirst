@@ -1,6 +1,6 @@
-import React from 'react'
-import styles from "./Post.module.css"
-import like from "../../../../images/like.svg"
+import React from 'react';
+import styles from './Post.module.css';
+import like from '../../../../images/like.svg';
 
 
 const Post = (props) => {
@@ -18,7 +18,7 @@ const Post = (props) => {
       <div className={styles.content}>
         {props.content}
       </div>
-      <hr className={styles.hr} noshade size={1} width="99%" />
+      <hr className={styles.hr} noshade size={1} width="99%"/>
       <div className={styles.likes}>
         <img className={styles.icon} src={like} alt=""/>
         <span className={styles.likes_text}>Likes:</span>

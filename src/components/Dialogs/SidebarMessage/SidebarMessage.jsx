@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "./SidebarMessage.module.css"
-import {NavLink} from "react-router-dom";
+import React from 'react';
+import styles from './SidebarMessage.module.css';
+import {NavLink} from 'react-router-dom';
 
 const SidebarMessage = (props) => {
   
@@ -9,7 +9,7 @@ const SidebarMessage = (props) => {
              to={`/dialogs/id${props.id}`}>
       <div className={styles.message}>
         <div className={styles.name}>
-            {props.name}
+          {props.name}
         </div>
         <div className={styles.content}>
           {props.content}

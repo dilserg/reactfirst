@@ -1,0 +1,45 @@
+.user{
+    padding: 20px;
+    background-color: #1d1d1d;
+    color: white;
+    font-size: 30px;
+    display: grid;
+    grid-template: 60px auto /120px auto 100px;
+    grid-template-areas: "photo info button"
+                        "photo status button";
+    margin: 20px 20px 35px 20px;
+}
+.dim{
+    font-size: 25px;
+    color: #646464;
+}
+.photo{
+    grid-area: photo;
+}
+.photo img{
+    height: 100px;
+}
+.info{
+    padding-top: 5px;
+    grid-area: info;
+}
+.status{
+    grid-area: status;
+}
+.button{
+    grid-area: button;
+}
+.button button{
+    margin-top: 10px;
+    font-size: 20px;
+    color: #f3faf7;
+    background-color: #646464;
+    border: none;
+    outline: none;
+    height: 80%;
+    width: 100%;
+}
+.button button:hover{
+    font-size: 21px;
+    background-color: rgba(255,255,255,0.05);
+}

@@ -1,7 +1,4 @@
 .dialogs{
-    margin-right: 150px;
-    background-color: #3c3c3c;
-    padding: 20px;
     display: grid;
     column-gap: 10px;
     grid-template-columns: 200px minmax(200px, auto);

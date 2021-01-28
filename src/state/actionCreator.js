@@ -1,17 +1,25 @@
-export const addPostActionCreator = () => ({type:"ADD-POST"})
+export const addPostAC = () => ({type: 'ADD-POST'});
 
-export const updatePostTextActionCreator = newText =>{
+export const updatePostTextAC = newText => {
   return {
-    type:"UPDATE-POST-TEXT",
-    newPostText:newText
+    type: 'UPDATE-POST-TEXT',
+    newPostText: newText
   };
-}
+};
 
-export const updateInputMessageAction = newText => {
-  return{
-    type:"UPDATE-INPUT-MESSAGE",
-    newMessageText:newText
-  }
-}
 
-export const sendMessageActionCreator = () => ({type:"SEND-MESSAGE"})
+export const updateInputMessageAC = newText => {
+  return {
+    type: 'UPDATE-INPUT-MESSAGE',
+    newMessageText: newText
+  };
+};
+
+export const sendMessageAC = () => ({type: 'SEND-MESSAGE'});
+
+
+export const followAC = (id) => ({type: 'FOLLOW', id});
+
+export const unfollowAC = (id) => ({type: 'UNFOLLOW', id});
+
+export const setUsersAC = (users) => ({type: 'SET-USERS',users});

@@ -1,9 +1,6 @@
 .content {
-    margin-right: 150px;
     display: grid;
     color: white;
-    padding: 20px;
-    background-color: #3c3c3c;
     font-size: 30px;
     min-height: 500px;
     grid-template-areas: "avatar info"

@@ -1,23 +1,21 @@
 import React from 'react';
-import Info from "./Info";
-import {connect} from "react-redux";
+import Info from './Info';
+import {connect} from 'react-redux';
 
 
-let mapDispatchToProps =(dispatch) =>{
+let mapDispatchToProps = (dispatch) => {
+  return {};
+};
+
+let mapStateToProps = (state) => {
   return {
-  
-  }
-}
-
-let mapStateToProps = (state) =>{
-  return{
     personInfo: state.profile.info.personInfo,
     name: state.profile.info.personInfo.name,
-    surname:state.profile.info.personInfo.surname
-  }
-}
+    surname: state.profile.info.personInfo.surname
+  };
+};
 
-const InfoContainer = connect(mapStateToProps,mapDispatchToProps)(Info)
+const InfoContainer = connect(mapStateToProps, mapDispatchToProps)(Info);
 
 
 export default InfoContainer;

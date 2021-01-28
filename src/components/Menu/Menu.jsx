@@ -1,6 +1,6 @@
-import React from "react";
-import styles from "./Menu.module.css"
-import {NavLink} from "react-router-dom";
+import React from 'react';
+import styles from './Menu.module.css';
+import {NavLink} from 'react-router-dom';
 
 const Menu = () => {
   return (
@@ -9,7 +9,7 @@ const Menu = () => {
         <li>
           <NavLink activeClassName={styles.active} className={styles.item} to="/profile">Profile</NavLink>
         </li>
-        <li >
+        <li>
           <NavLink activeClassName={styles.active} className={styles.item} to="/dialogs">Messages</NavLink>
         </li>
         <li>
@@ -18,9 +18,12 @@ const Menu = () => {
         <li>
           <a className={styles.item} href="#">Photos</a>
         </li>
+        <li>
+          <NavLink activeClassName={styles.active} className={styles.item} to="/users">Users</NavLink>
+        </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
 
 export default Menu;

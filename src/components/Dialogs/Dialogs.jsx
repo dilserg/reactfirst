@@ -1,7 +1,7 @@
-import React from "react";
-import styles from "./Dialogs.module.css";
-import DialogContainer from "./Dialog/DialogContainer";
-import InputMessageContainer from "./InputMessage/InputMessageContainer";
+import React from 'react';
+import styles from './Dialogs.module.css';
+import DialogContainer from './Dialog/DialogContainer';
+import InputMessageContainer from './InputMessage/InputMessageContainer';
 
 
 const Dialogs = (props) => {
@@ -14,7 +14,7 @@ const Dialogs = (props) => {
       <div className={styles.wrapper}>
         <DialogContainer dialog={props.dialog}/>
         
-        <InputMessageContainer store={props.store} inputMessage={props.inputMessage} />
+        <InputMessageContainer store={props.store} inputMessage={props.inputMessage}/>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './Info.module.css'
-import FullInfo from "./Description/FullInfo";
-import DescriptionContainer from "./Description/DescriptionContainer";
+import styles from './Info.module.css';
+import FullInfo from './Description/FullInfo';
+import DescriptionContainer from './Description/DescriptionContainer';
 
 
 const Info = (props) => {
@@ -11,7 +11,7 @@ const Info = (props) => {
         {props.name} {props.surname}
       </div>
       <DescriptionContainer personInfo={props.personInfo}/>
-      <FullInfo />
+      <FullInfo/>
     </div>
   );
 };

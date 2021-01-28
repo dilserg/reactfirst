@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from './DialogMessage.module.css'
-import {NavLink} from "react-router-dom";
-import style from "./DialogMessage.module.css";
+import styles from './DialogMessage.module.css';
+import {NavLink} from 'react-router-dom';
+import style from './DialogMessage.module.css';
 
 const SelfDialogMessage = (props) => {
   return (

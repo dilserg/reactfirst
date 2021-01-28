@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./Profile.module.css"
-import ava from "../../images/Male.png"
-import PostsContainer from "./Posts/PostsContainer";
-import InfoContainer from "./Info/InfoContainer";
+import React from 'react';
+import styles from './Profile.module.css';
+import ava from '../../images/Male.png';
+import PostsContainer from './Posts/PostsContainer';
+import InfoContainer from './Info/InfoContainer';
 
 
 const Profile = () => {
@@ -12,10 +12,10 @@ const Profile = () => {
         <img src={ava} alt=""/><br/>
         <button className={styles.button}>Edit</button>
       </div>
-        <InfoContainer />
-        <PostsContainer />
+      <InfoContainer/>
+      <PostsContainer/>
     </div>
-  )
-}
+  );
+};
 
 export default Profile;

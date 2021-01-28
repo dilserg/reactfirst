@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from "./InputMessage.module.css"
+import styles from './InputMessage.module.css';
 import TextareaAutosize from 'react-textarea-autosize';
 
 const InputMessage = (props) => {
@@ -8,7 +8,7 @@ const InputMessage = (props) => {
   
   const updateMessage = () => {
     props.updateInputMessage(messageText);
-  }
+  };
   
   return (
     <div className={styles.input}>
