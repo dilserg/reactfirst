@@ -1,7 +1,8 @@
 import {getTotalUsersCountAC} from './actionCreator';
 
 let initialState = {
-  users:[]
+  users:[],
+  selectedPage:1,
 };
 
 const AllUsersReducer = (state = initialState, action) => {
@@ -39,6 +40,9 @@ const AllUsersReducer = (state = initialState, action) => {
       
     case 'GET-TOTAL-COUNT':
       return {...state, totalUsersCount: action.totalUsersCount};
+      
+    case 'SELECT-PAGE':
+      return {...state, selectedPage:action.page}
     
     default:
       return state;

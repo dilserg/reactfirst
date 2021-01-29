@@ -1,7 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import AllUsers from './AllUsers';
-import {followAC, getTotalUsersCountAC, setUsersAC, unfollowAC} from '../../state/actionCreator';
+import {followAC, getTotalUsersCountAC, selectPageAC, setUsersAC, unfollowAC} from '../../state/actionCreator';
+
 
 const mapDispatchToProps = dispatch => {
   return {
@@ -11,20 +12,22 @@ const mapDispatchToProps = dispatch => {
     unfollow(id) {
       dispatch(unfollowAC(id));
     },
-    setUsers(users){
-      dispatch(setUsersAC(users))
+    setUsers(users) {
+      dispatch(setUsersAC(users));
     },
-    getTotalCount(totalUsersCount){
-      dispatch(getTotalUsersCountAC(totalUsersCount))
+    getTotalCount(totalUsersCount) {
+      dispatch(getTotalUsersCountAC(totalUsersCount));
+    },
+    selectPage(page){
+      dispatch(selectPageAC(page))
     }
-    
   };
 };
 
 const mapStateToProps = state => {
   
-  let pagesList = []
-  let pagesCount = Math.ceil(state.allUsers.totalUsersCount / 5)
+  let pagesList = [];
+  let pagesCount = Math.ceil(state.allUsers.totalUsersCount / 5);
   debugger
   for (let i = 1; i <= pagesCount; i++)
     pagesList.push(i);
@@ -32,6 +35,7 @@ const mapStateToProps = state => {
   return {
     usersList: state.allUsers.users,
     pagesList,
+    selectedPage: state.allUsers.selectedPage,
   };
 };
 

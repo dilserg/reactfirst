@@ -24,4 +24,6 @@ export const unfollowAC = (id) => ({type: 'UNFOLLOW', id});
 
 export const setUsersAC = (users) => ({type: 'SET-USERS', users});
 
-export const getTotalUsersCountAC = (totalUsersCount) => ({type:'GET-TOTAL-COUNT',totalUsersCount})
+export const getTotalUsersCountAC = (totalUsersCount) => ({type: 'GET-TOTAL-COUNT', totalUsersCount});
+
+export const selectPageAC = (page) => ({type: 'SELECT-PAGE', page});

@@ -9,7 +9,7 @@ import Pages from './Pages/Pages';
 class AllUsers extends React.Component {
   
   getUsers = () => {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users')
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.selectedPage}&count=5`)
       .then((response) => {
         this.props.setUsers(response.data.items);
       });
@@ -32,14 +32,13 @@ class AllUsers extends React.Component {
       return <User isFollowed={user.followed} name={user.name} surname={user.surname} id={user.id}
                    status={user.status} follow={this.props.follow} unfollow={this.props.unfollow}
                    photo={user.photos.small === null ? MalePhoto : user.photo}/>;
-      
     });
     
     
     return (
-      
       <div>
-        <Pages selectedPage={1} pagesList={this.props.pagesList} />
+        <Pages selectedPage={this.props.selectedPage} selectPage={this.props.selectPage}
+               pagesList={this.props.pagesList} getUsers={this.getUsers}/>
         <div className={styles.users}>
           {usersList}
         </div>
