@@ -1,3 +1,4 @@
+import {getTotalUsersCountAC} from './actionCreator';
 
 let initialState = {
   users:[]
@@ -34,7 +35,10 @@ const AllUsersReducer = (state = initialState, action) => {
     
     
     case 'SET-USERS':
-      return {...state,users: [...action.users] };
+      return {...state,users: action.users };
+      
+    case 'GET-TOTAL-COUNT':
+      return {...state, totalUsersCount: action.totalUsersCount};
     
     default:
       return state;
