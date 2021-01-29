@@ -22,7 +22,7 @@ const User = (props) => {
         <span className={styles.dim}>status: </span>{props.status}
       </div>
       <div className={styles.button}>
-        {props.isFollowed ? <button onClick={unfollow}>Follow</button> : <button onClick={follow}>Unfollow</button>}
+        {props.isFollowed ? <button onClick={unfollow}>Unfollow</button> : <button onClick={follow}>Follow</button> }
       </div>
     
     </div>

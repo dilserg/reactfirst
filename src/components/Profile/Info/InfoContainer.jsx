@@ -9,7 +9,6 @@ let mapDispatchToProps = (dispatch) => {
 
 let mapStateToProps = (state) => {
   return {
-    personInfo: state.profile.info.personInfo,
     name: state.profile.info.personInfo.name,
     surname: state.profile.info.personInfo.surname
   };

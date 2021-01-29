@@ -10,7 +10,7 @@ const Info = (props) => {
       <div className={styles.name}>
         {props.name} {props.surname}
       </div>
-      <DescriptionContainer personInfo={props.personInfo}/>
+      <DescriptionContainer />
       <FullInfo/>
     </div>
   );

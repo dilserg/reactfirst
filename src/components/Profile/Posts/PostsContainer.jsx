@@ -10,7 +10,6 @@ import {connect} from 'react-redux';
 let mapStateToProps = (state) => {
   
   let postsData = state.profile.posts.postsData.map((data) => {
-    debugger
     return <Post name={`${data.name} ${data.surname}`} time={data.date} content={data.content}
                  likesCount={data.likesCount} ava={data.photo}/>;
   });

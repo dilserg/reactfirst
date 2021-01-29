@@ -11,7 +11,7 @@ const AllUsersReducer = (state = initialState, action) => {
         ...state,
         users: state.users.map(user => {
           if (user.id === action.id)
-            return {...user, isFollowed: true};
+            return {...user, followed: true};
           else
             return user;
         })
@@ -20,11 +20,12 @@ const AllUsersReducer = (state = initialState, action) => {
     
     
     case 'UNFOLLOW':
+  
       stateCopy = {
         ...state,
         users: state.users.map(user => {
           if (user.id === action.id)
-            return {...user, isFollowed: false};
+            return {...user, followed: false};
           else
             return user;
         })

@@ -22,4 +22,4 @@ export const followAC = (id) => ({type: 'FOLLOW', id});
 
 export const unfollowAC = (id) => ({type: 'UNFOLLOW', id});
 
-export const setUsersAC = (users) => ({type: 'SET-USERS',users});
+export const setUsersAC = (users) => ({type: 'SET-USERS', users});

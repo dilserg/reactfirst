@@ -2,6 +2,13 @@ import React from 'react';
 import styles from './Description.module.css';
 
 const Description = (props) => {
+  let isFullInfo = false;
+  let buttonText = "Show full information";
+  const showFull = () =>{
+    isFullInfo = !isFullInfo;
+    buttonText = isFullInfo ? "Hide full information" : "Show full information";
+  }
+  
   return (
     <div className={styles.description}>
       <p className={styles.item}>
@@ -17,7 +24,7 @@ const Description = (props) => {
         <span className={styles.info}>{props.university}</span>
       </p>
       <div>
-        <button onClick={() => console.log(1)} className={styles.button}>Show full information</button>
+        <button onClick={showFull} className={styles.button}>{buttonText}</button>
       </div>
     </div>
   );

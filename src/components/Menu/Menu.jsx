@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Menu.module.css';
 import {NavLink} from 'react-router-dom';
 
-const Menu = () => {
+const Menu = (props) => {
   return (
     <nav className={styles.nav}>
       <ul>
