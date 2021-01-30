@@ -7,6 +7,8 @@ export const updatePostTextAC = newText => {
   };
 };
 
+export const setProfileAC = (data) => ({type: 'SET-PROFILE',data});
+
 
 export const updateInputMessageAC = newText => {
   return {
@@ -18,12 +20,15 @@ export const updateInputMessageAC = newText => {
 export const sendMessageAC = () => ({type: 'SEND-MESSAGE'});
 
 
-export const followAC = (id) => ({type: 'FOLLOW', id});
+export const follow = (id) => ({type: 'FOLLOW', id});
 
-export const unfollowAC = (id) => ({type: 'UNFOLLOW', id});
+export const unfollow = (id) => ({type: 'UNFOLLOW', id});
 
-export const setUsersAC = (users) => ({type: 'SET-USERS', users});
+export const setUsers = (users) => ({type: 'SET-USERS', users});
 
-export const getTotalUsersCountAC = (totalUsersCount) => ({type: 'GET-TOTAL-COUNT', totalUsersCount});
+export const getTotalUsersCount = (totalUsersCount) => ({type: 'GET-TOTAL-COUNT', totalUsersCount});
 
-export const selectPageAC = (page) => ({type: 'SELECT-PAGE', page});
+export const selectPage = (page) => ({type: 'SELECT-PAGE', page});
+
+export const toggleFetching = (isFetching) => ({type: 'TOGGLE-FETCH', isFetching});
+

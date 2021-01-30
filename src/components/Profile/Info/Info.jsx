@@ -1,19 +1,20 @@
 import React from 'react';
 import styles from './Info.module.css';
 import FullInfo from './Description/FullInfo';
-import DescriptionContainer from './Description/DescriptionContainer';
+import Description from './Description/Description';
 
 
 const Info = (props) => {
+
+  
   return (
     <div className={styles.info}>
       <div className={styles.name}>
         {props.name} {props.surname}
       </div>
-      <DescriptionContainer />
+      <Description university={props.university} city={props.city} age={props.age}/>
       <FullInfo/>
     </div>
   );
 };
-//props.info.showFull
 export default Info;

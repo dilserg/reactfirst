@@ -1,7 +1,6 @@
 .user{
     padding: 20px;
     background-color: #1d1d1d;
-    color: white;
     font-size: 30px;
     display: grid;
     grid-template: 60px auto /120px auto 100px;
@@ -22,6 +21,11 @@
 .info{
     padding-top: 5px;
     grid-area: info;
+    color: white;
+    text-decoration: none;
+}
+.info:hover{
+    text-decoration: underline;
 }
 .status{
     grid-area: status;

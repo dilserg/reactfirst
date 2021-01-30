@@ -4,11 +4,12 @@ const initialState = {
   
   info: {
     personInfo: {
-      name: 'Ilya',
-      surname: 'Davydov',
-      city: 'Kaluga',
-      age: 18,
-      university: 'MISIS'
+      name: null,
+      surname: null,
+      city: null,
+      age: null,
+      university: null,
+      photo:MyPhoto
     },
     
   },
@@ -77,6 +78,14 @@ const profileReducer = (state = initialState, action) => {
       stateCopy.posts.postInputText = action.newPostText;
       return stateCopy;
     
+    case 'SET-PROFILE':
+      stateCopy = {...state}
+      stateCopy.info.personInfo = {
+        ...state.info.personInfo,
+        name: action.data.fullName,
+        photo: action.data.photos.large,
+      }
+      return stateCopy;
     
     default:
       return state;

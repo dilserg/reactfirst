@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './Pages.module.css';
 
 const Pages = (props) => {
-  let pagesList = props.pagesList;
+  let pagesList;
   if (props.pagesList <= 10) {
     pagesList = props.pagesList;
   } else if (props.selectedPage < 5) {
@@ -14,10 +14,10 @@ const Pages = (props) => {
   }
   
   const selectPage = (page) => {
-    setTimeout(()=>{
+    setTimeout(() => {
       props.getUsers();
-    },1)
-    props.selectPage(page)
+    }, 1);
+    props.selectPage(page);
     
   };
   

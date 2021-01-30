@@ -1,19 +1,22 @@
-import {getTotalUsersCountAC} from './actionCreator';
 
 let initialState = {
   users:[],
   selectedPage:1,
+  isFetching:false,
 };
 
 const AllUsersReducer = (state = initialState, action) => {
   let stateCopy;
   switch (action.type) {
+    
     case 'FOLLOW':
       stateCopy = {
         ...state,
         users: state.users.map(user => {
-          if (user.id === action.id)
+          if (user.id === action.id){
+            debugger
             return {...user, followed: true};
+          }
           else
             return user;
         })
@@ -42,8 +45,10 @@ const AllUsersReducer = (state = initialState, action) => {
       return {...state, totalUsersCount: action.totalUsersCount};
       
     case 'SELECT-PAGE':
-      return {...state, selectedPage:action.page}
-    
+      return {...state, selectedPage:action.page};
+      
+    case 'TOGGLE-FETCH':
+      return {...state, isFetching: !action.isFetching}
     default:
       return state;
   }
