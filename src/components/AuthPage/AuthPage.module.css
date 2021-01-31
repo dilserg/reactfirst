@@ -1,0 +1,22 @@
+.form{
+    padding: 20px;
+    background-color: #1d1d1d;
+    line-height: 40px;
+    width: 500px;
+    margin: 50px auto;
+}
+.login, .password{
+    color: white;
+    display: flex;
+    justify-content: space-between;
+}
+.login input, .password input{
+    width: 280px;
+    font-size: 30px;
+    margin-top: auto;
+    height: 30px;
+}
+.login span, .password span{
+    font-size: 30px;
+    font-weight: 700;
+}

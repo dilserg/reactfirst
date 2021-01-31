@@ -27,7 +27,7 @@ html {
 body {
     height: 100%;
     overflow-x: hidden;
-    padding: 0 75px;
+    /*padding: 0 75px;*/
     background-color: #1d1d1d;
     line-height: 1;
 }
@@ -54,9 +54,8 @@ button:focus{
     display: grid;
     row-gap: 25px;
     column-gap: 10px;
-    grid-template-rows: 100px auto;
     grid-template-columns: 1fr 8fr;
-    grid-template-areas: "header header"
+    grid-template-areas: ". ."
                          "nav content";
 }
 .content{

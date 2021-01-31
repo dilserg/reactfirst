@@ -4,6 +4,7 @@ const initialState = {
   
   info: {
     personInfo: {
+      id:14502,
       name: null,
       surname: null,
       city: null,

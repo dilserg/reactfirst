@@ -32,3 +32,5 @@ export const selectPage = (page) => ({type: 'SELECT-PAGE', page});
 
 export const toggleFetching = (isFetching) => ({type: 'TOGGLE-FETCH', isFetching});
 
+export const setUserDataAC = (id, email,login) => ({type:'SET-USER-DATA', data:{id,email,login}})
+

@@ -4,11 +4,13 @@ import Profile from './Profile';
 import Post from './Posts/Post/Post';
 import {addPostAC, setProfileAC, updatePostTextAC} from '../../state/actionCreator';
 import * as axios from 'axios';
+import {withRouter} from 'react-router';
 
 class ProfileContainer extends React.Component {
   
   getProfile=()=>{
-    axios.get('https://social-network.samuraijs.com/api/1.0/profile/1402')
+    let id = this.props.match.params.id || this.props.id;
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${id}`)
       .then((response)=>{
         this.props.setProfile(response.data);
       })
@@ -32,8 +34,8 @@ const mapStateToProps = state => {
     return <Post name={`${data.name} ${data.surname}`} time={data.date} content={data.content}
                  likesCount={data.likesCount} ava={data.photo}/>;
   });
-  
   return {
+    id:state.profile.info.personInfo.id,
     name: state.profile.info.personInfo.name,
     surname: state.profile.info.personInfo.surname,
     photo:state.profile.info.personInfo.photo,
@@ -42,7 +44,6 @@ const mapStateToProps = state => {
     university: state.profile.info.personInfo.university,
     city: state.profile.info.personInfo.city,
     age: state.profile.info.personInfo.age,
-  
   };
 };
 
@@ -62,4 +63,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+const URLData = withRouter(ProfileContainer)
+
+export default connect(mapStateToProps, mapDispatchToProps)(URLData);
