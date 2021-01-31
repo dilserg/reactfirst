@@ -6,6 +6,7 @@ import AllUsersContainer from './components/AllUsers/AllUsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import AuthPage from './components/AuthPage/AuthPage';
 import HeaderContainer from './components/Header/HeaderContainer';
+import EditPage from './components/EditPage/EditPage';
 
 const App = (props) => {
   return (
@@ -14,10 +15,12 @@ const App = (props) => {
       <div className='App'>
         <Menu/>
         <div className='content'>
+          <Route exact path='/' render={() => <ProfileContainer/>}/>
           <Route path='/profile/:id?' render={() => <ProfileContainer/>}/>
           <Route path='/dialogs' render={() => <DialogsContainer/>}/>
           <Route path='/users' render={() => <AllUsersContainer/>}/>
-          <Route path='/auth' render={()=> <AuthPage/>}/>
+          <Route path='/auth' render={() => <AuthPage/>}/>
+          <Route path='/edit' render={() => <EditPage/>}/>
         </div>
       </div>
     </BrowserRouter>

@@ -93,4 +93,15 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
+export const setProfileAC = (data) => ({type: 'SET-PROFILE',data});
+
+export const addPostAC = () => ({type: 'ADD-POST'});
+
+export const updatePostTextAC = newText => {
+  return {
+    type: 'UPDATE-POST-TEXT',
+    newPostText: newText
+  };
+};
+
 export default profileReducer;

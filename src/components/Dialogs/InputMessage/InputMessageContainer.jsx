@@ -1,5 +1,5 @@
 import React from 'react';
-import {updateInputMessageAC, sendMessageAC} from '../../../state/actionCreator';
+import {updateInputMessageAC, sendMessageAC} from '../../../state/dialogsReducer';
 import InputMessage from './InputMessage';
 import {connect} from 'react-redux';
 

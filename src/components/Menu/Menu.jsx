@@ -16,9 +16,6 @@ const Menu = (props) => {
           <a className={styles.item} href="#">Friends</a>
         </li>
         <li>
-          <a className={styles.item} href="#">Photos</a>
-        </li>
-        <li>
           <NavLink activeClassName={styles.active} className={styles.item} to="/users">Users</NavLink>
         </li>
       </ul>

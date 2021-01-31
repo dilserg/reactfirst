@@ -1,0 +1,39 @@
+.head{
+    color: white;
+    width: 100px;
+    margin: 0 auto 20px auto;
+    font-size: 30px;
+    font-weight: 700;
+}
+.text{
+    color: white;
+    display: inline-block;
+    font-size: 30px;
+    width: 160px;
+    text-align: end;
+    margin-right: 10px;
+}
+.input{
+    width: 200px;
+    height: 18px;
+    outline: none;
+    border: none;
+}
+.input:hover{
+    border: none;
+}
+.button{
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+}
+.buttonContainer{
+    width: 100px;
+    margin: 0 auto;
+}
+.textContainer{
+    margin: 0 auto 50px auto;
+    width: 400px;
+}

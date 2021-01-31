@@ -76,4 +76,13 @@ const dialogsReducer = (state = initialState, action) => {
   }
 };
 
+export const updateInputMessageAC = newText => {
+  return {
+    type: 'UPDATE-INPUT-MESSAGE',
+    newMessageText: newText
+  };
+};
+
+export const sendMessageAC = () => ({type: 'SEND-MESSAGE'});
+
 export default dialogsReducer;
