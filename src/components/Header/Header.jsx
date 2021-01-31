@@ -6,7 +6,7 @@ import {NavLink} from 'react-router-dom';
 const Header = (props) => {
   const block = () =>{
     if (props.login){
-      return <NavLink onClick={props.getProfile} to={`/profile/${props.id}`}>{props.login}</NavLink>
+      return <NavLink onClick={()=>props.getProfile(props.id)} to={`/profile/${props.id}`}>{props.login}</NavLink>
     }
     return <NavLink to='/auth'>Login</NavLink>
   }

@@ -1,3 +1,5 @@
+import userAPI from '../api/api';
+
 let initialState = {
   id: null,
   login: null,
@@ -18,7 +20,16 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export const setUserDataAC = (id, email,login) => ({type:'SET-USER-DATA', data:{id,email,login}})
+export const setUserData = (id, email,login) => ({type:'SET-USER-DATA', data:{id,email,login}})
 
+export const getData = () => {
+    return (dispatch)=> {
+      userAPI.authMe()
+        .then((response) => {
+          const data = response.data.data;
+          dispatch(setUserData(data.id, data.email, data.login));
+        });
+    }
+};
 
 export default authReducer;

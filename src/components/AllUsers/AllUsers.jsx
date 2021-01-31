@@ -6,7 +6,6 @@ import Preloader from '../common/Preloader/Preloader';
 
 const AllUsers = props =>{
   
-    
     return (
       <div>
         <Pages selectedPage={props.selectedPage} selectPage={props.selectPage}

@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Pages.module.css';
 
 const Pages = (props) => {
+  
   let pagesList;
   if (props.pagesList <= 10) {
     pagesList = props.pagesList;
@@ -15,7 +16,7 @@ const Pages = (props) => {
   
   const selectPage = (page) => {
     setTimeout(() => {
-      props.getUsers();
+      props.getUsers(page);
     }, 1);
     props.selectPage(page);
     
@@ -27,10 +28,12 @@ const Pages = (props) => {
       {page}</span>;
   });
   
-  
   return (
     <div className={styles.list}>
+      {props.selectedPage > 5 && <span className={styles.page} onClick={()=>selectPage(1)}>first page</span>}
       {pagesList}
+      {props.selectedPage < props.pagesList.length-4 && <span className={styles.page}
+        onClick={()=> selectPage(props.pagesList.length)}>last page</span>}
     </div>
   );
 };

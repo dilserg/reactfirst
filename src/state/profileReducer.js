@@ -1,4 +1,5 @@
 import MyPhoto from 'C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png';
+import userAPI from '../api/api';
 
 const initialState = {
   
@@ -93,7 +94,9 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const setProfileAC = (data) => ({type: 'SET-PROFILE',data});
+export default profileReducer;
+
+export const setProfile = (data) => ({type: 'SET-PROFILE',data});
 
 export const addPostAC = () => ({type: 'ADD-POST'});
 
@@ -104,4 +107,11 @@ export const updatePostTextAC = newText => {
   };
 };
 
-export default profileReducer;
+export const getProfile=(id)=>{
+  return (dispatch) => {
+    userAPI.getProfile(id)
+      .then((response) => {
+        dispatch(setProfile(response.data));
+      })
+  }
+}

@@ -7,13 +7,14 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import AuthPage from './components/AuthPage/AuthPage';
 import HeaderContainer from './components/Header/HeaderContainer';
 import EditPage from './components/EditPage/EditPage';
+import MenuContainer from './components/Menu/MenuContainer';
 
 const App = (props) => {
   return (
     <BrowserRouter>
       <HeaderContainer/>
       <div className='App'>
-        <Menu/>
+        <MenuContainer/>
         <div className='content'>
           <Route exact path='/' render={() => <ProfileContainer/>}/>
           <Route path='/profile/:id?' render={() => <ProfileContainer/>}/>

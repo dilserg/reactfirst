@@ -2,22 +2,14 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Profile from './Profile';
 import Post from './Posts/Post/Post';
-import {addPostAC, setProfileAC, updatePostTextAC} from '../../state/profileReducer';
+import {addPostAC, getProfile, setProfile, updatePostTextAC} from '../../state/profileReducer';
 import {withRouter} from 'react-router';
-import userAPI from '../../api/api';
+
 
 class ProfileContainer extends React.Component {
-  
-  getProfile=()=>{
-    let id = this.props.match.params.id || this.props.id;
-    userAPI.getProfile(id)
-      .then((response)=>{
-        this.props.setProfile(response.data);
-      })
-  }
-  
   componentDidMount() {
-    this.getProfile()
+    let id = this.props.match.params.id || this.props.id;
+    this.props.getProfile(id)
   }
   
   render() {
@@ -50,7 +42,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     setProfile(data){
-      dispatch(setProfileAC(data))
+      dispatch(setProfile(data))
     },
     updateText(postText){
       let text = postText.current.value;
@@ -59,9 +51,12 @@ const mapDispatchToProps = dispatch => {
     addPost(){
       dispatch(addPostAC());
     },
-    
+    getProfile(id){
+      dispatch(getProfile(id))
+    }
   };
 };
+
 
 const URLData = withRouter(ProfileContainer)
 
