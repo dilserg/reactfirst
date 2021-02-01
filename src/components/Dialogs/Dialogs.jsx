@@ -4,6 +4,7 @@ import DialogContainer from './Dialog/DialogContainer';
 import InputMessageContainer from './InputMessage/InputMessageContainer';
 
 
+
 const Dialogs = (props) => {
   
   return (
@@ -13,7 +14,6 @@ const Dialogs = (props) => {
       </div>
       <div className={styles.wrapper}>
         <DialogContainer dialog={props.dialog}/>
-        
         <InputMessageContainer store={props.store} inputMessage={props.inputMessage}/>
       </div>
     </div>

@@ -6,14 +6,18 @@ const Menu = (props) => {
   
   const toFirstPage = () => {
     props.toFirstPage();
-    props.getUsers(1);
+    props.getUsers(1, props.usersOnOnePage);
   };
+  
+  const loadProfile = () =>{
+    props.getProfile(props.id)
+  }
   
   return (
     <nav className={styles.nav}>
       <ul>
         <li>
-          <NavLink activeClassName={styles.active} className={styles.item} to="/profile">Profile</NavLink>
+          <NavLink onClick={loadProfile} activeClassName={styles.active} className={styles.item} to="/profile">Profile</NavLink>
         </li>
         <li>
           <NavLink activeClassName={styles.active} className={styles.item} to="/dialogs">Messages</NavLink>

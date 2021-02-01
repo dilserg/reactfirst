@@ -11,12 +11,13 @@ import {
 import User from './User/User';
 import MalePhoto from 'C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png';
 import AllUsers from './AllUsers';
+import WithAuthRedirect from '../HOC/WithAuthRedirect';
 
 
 class AllUsersContainer extends React.Component {
   
   componentDidMount() {
-    this.props.getUsers(this.props.selectedPage);
+    this.props.getUsers(this.props.selectedPage, this.props.usersOnOnePage);
     this.props.getCount();
   }
   
@@ -30,7 +31,8 @@ class AllUsersContainer extends React.Component {
     });
     
     return <AllUsers usersList={usersList} selectedPage={this.props.selectedPage} selectPage={this.props.selectPage}
-                     pagesList={this.props.pagesList} getUsers={this.props.getUsers} isFetching={this.props.isFetching}/>;
+                     pagesList={this.props.pagesList} getUsers={this.props.getUsers} isFetching={this.props.isFetching}
+                     usersOnOnePage={this.props.usersOnOnePage}/>;
   };
 }
 
@@ -50,7 +52,7 @@ const mapDispatchToProps = {
 const mapStateToProps = state => {
   
   let pagesList = [];
-  let pagesCount = Math.ceil(state.allUsers.totalUsersCount / 5);
+  let pagesCount = Math.ceil(state.allUsers.totalUsersCount / state.allUsers.usersOnOnePage);
   for (let i = 1; i <= pagesCount; i++)
     pagesList.push(i);
   
@@ -59,9 +61,13 @@ const mapStateToProps = state => {
     usersList: state.allUsers.users,
     pagesList,
     selectedPage: state.allUsers.selectedPage,
-    isFetching: state.allUsers.isFetching
+    isFetching: state.allUsers.isFetching,
+    usersOnOnePage: state.allUsers.usersOnOnePage,
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllUsersContainer);
+
+let WithRedirectAllUsersContainer = WithAuthRedirect(AllUsersContainer)
+
+export default connect(mapStateToProps, mapDispatchToProps)(WithRedirectAllUsersContainer);
 

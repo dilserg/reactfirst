@@ -8,9 +8,10 @@ import {NavLink} from 'react-router-dom';
 
 
 const Profile = (props) => {
-  if (!props.name) {
+  if (props.isFetching) {
     return <div className={styles.preloader}><Preloader/></div>;
   }
+  
   return (
     <div className={styles.content}>
       <div className={styles.avatar}>

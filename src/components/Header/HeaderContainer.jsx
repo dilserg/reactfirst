@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import {getProfile} from '../../state/profileReducer';
-import {getData} from '../../state/authReducer';
+import {authMe} from '../../state/authReducer';
 import {connect} from 'react-redux';
 
 class HeaderContainer extends React.Component {
@@ -26,7 +26,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
     getProfile,
-    getData
+    getData: authMe
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderContainer);

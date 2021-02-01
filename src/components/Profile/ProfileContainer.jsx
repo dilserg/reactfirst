@@ -4,19 +4,20 @@ import Profile from './Profile';
 import Post from './Posts/Post/Post';
 import {addPostAC, getProfile, setProfile, updatePostTextAC} from '../../state/profileReducer';
 import {withRouter} from 'react-router';
+import {Redirect} from 'react-router-dom';
+import WithAuthRedirect from '../HOC/WithAuthRedirect';
 
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    let id = this.props.match.params.id || this.props.id;
+    let id =this.props.match.params.id || this.props.id ;
     this.props.getProfile(id)
   }
   
   render() {
-    return <Profile name={this.props.name} surname={this.props.surname} postsData={this.props.postsData}
-                    postInputText={this.props.postInputText} updateText={this.props.updateText}
-                    addPost={this.props.addPost} university={this.props.university} city={this.props.city}
-                    age={this.props.age} photo={this.props.photo}/>;
+
+    
+    return <Profile {...this.props}/>;
   }
 }
 
@@ -36,6 +37,8 @@ const mapStateToProps = state => {
     university: state.profile.info.personInfo.university,
     city: state.profile.info.personInfo.city,
     age: state.profile.info.personInfo.age,
+    
+    isFetching:state.profile.isFetching
   };
 };
 
@@ -58,6 +61,8 @@ const mapDispatchToProps = dispatch => {
 };
 
 
-const URLData = withRouter(ProfileContainer)
+let WithRedirectProfileContainer = WithAuthRedirect(ProfileContainer)
+
+const URLData = withRouter(WithRedirectProfileContainer)
 
 export default connect(mapStateToProps, mapDispatchToProps)(URLData);

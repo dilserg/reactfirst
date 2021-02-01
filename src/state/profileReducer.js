@@ -5,7 +5,7 @@ const initialState = {
   
   info: {
     personInfo: {
-      id:14502,
+      id:null,
       name: null,
       surname: null,
       city: null,
@@ -48,8 +48,8 @@ const initialState = {
     ],
     
     postInputText: '',
-  }
-  
+  },
+  isFetching: false
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -73,8 +73,7 @@ const profileReducer = (state = initialState, action) => {
         };
       }
       return stateCopy;
-    
-    
+      
     case 'UPDATE-POST-TEXT':
       stateCopy = {...state};
       stateCopy.posts.postInputText = action.newPostText;
@@ -88,7 +87,13 @@ const profileReducer = (state = initialState, action) => {
         photo: action.data.photos.large,
       }
       return stateCopy;
-    
+
+    case 'TOGGLE-PROFILE-FETCHING':
+      return {
+        ...state,
+        isFetching: action.isFetching
+      }
+      
     default:
       return state;
   }
@@ -107,11 +112,15 @@ export const updatePostTextAC = newText => {
   };
 };
 
+const toggleProfileFetching = (isFetching) => ({type:'TOGGLE-PROFILE-FETCHING',isFetching})
+
 export const getProfile=(id)=>{
   return (dispatch) => {
+    dispatch(toggleProfileFetching(true));
     userAPI.getProfile(id)
       .then((response) => {
         dispatch(setProfile(response.data));
+        dispatch(toggleProfileFetching(false));
       })
   }
 }

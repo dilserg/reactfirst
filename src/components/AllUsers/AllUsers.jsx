@@ -9,7 +9,7 @@ const AllUsers = props =>{
     return (
       <div>
         <Pages selectedPage={props.selectedPage} selectPage={props.selectPage}
-               pagesList={props.pagesList} getUsers={props.getUsers}/>
+               pagesList={props.pagesList} getUsers={props.getUsers} usersOnOnePage={props.usersOnOnePage}/>
         <div className={styles.users}>
           {props.isFetching ? <div className={styles.preloader}><Preloader/></div> : props.usersList}
         </div>

@@ -16,10 +16,9 @@ const Pages = (props) => {
   
   const selectPage = (page) => {
     setTimeout(() => {
-      props.getUsers(page);
+      props.getUsers(page, props.usersOnOnePage);
     }, 1);
     props.selectPage(page);
-    
   };
   
   pagesList = pagesList.map((page) => {

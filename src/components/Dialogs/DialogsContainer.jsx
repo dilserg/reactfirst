@@ -2,6 +2,7 @@ import React from 'react';
 import Dialogs from './Dialogs';
 import SidebarMessageContainer from './SidebarMessage/SidebarMessageContainer';
 import {connect} from 'react-redux';
+import WithAuthRedirect from '../HOC/WithAuthRedirect';
 
 
 let mapStateToProps = (state) => {
@@ -12,7 +13,7 @@ let mapStateToProps = (state) => {
   return {
     sidebarMessages: sidebarMessages,
     dialog: state.dialogs.dialog,
-    inputMessage: state.dialogs.inputMessage
+    inputMessage: state.dialogs.inputMessage,
   };
 };
 
@@ -25,6 +26,8 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+let WithRedirectDialogsContainer = WithAuthRedirect(Dialogs)
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(WithRedirectDialogsContainer);
 
 export default DialogsContainer;

@@ -4,25 +4,32 @@ let initialState = {
   id: null,
   login: null,
   email: null,
-  isFetching: false
+  isAuthorized:false
 };
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     
     case 'SET-USER-DATA':
+      
+      if (action.data.id){
+        return {
+          ...state,
+          ...action.data,
+          isAuthorized: true
+        };
+      }
       return {
-        ...state,
-        ...action.data
+        ...state
       };
     default:
       return state;
   }
 };
 
-export const setUserData = (id, email,login) => ({type:'SET-USER-DATA', data:{id,email,login}})
+const setUserData = (id, email,login) => ({type:'SET-USER-DATA', data:{id,email,login}})
 
-export const getData = () => {
+export const authMe = () => {
     return (dispatch)=> {
       userAPI.authMe()
         .then((response) => {

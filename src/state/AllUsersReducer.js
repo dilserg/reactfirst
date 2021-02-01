@@ -3,6 +3,7 @@ import userAPI from '../api/api';
 let initialState = {
   users: [],
   selectedPage: 1,
+  usersOnOnePage:10,
   isFetching: false,
   usersInFollowingProgress: []
 };
@@ -91,10 +92,10 @@ export const toggleFollowingProgress = (isFollowingProgress, id) => ({
   id
 });
 
-export const getUsers = (selectedPage) => {
+export const getUsers = (selectedPage, usersOnOnePage) => {
   return (dispatch) => {
     dispatch(toggleFetching(false));
-    userAPI.getUsers(selectedPage)
+    userAPI.getUsers(selectedPage, usersOnOnePage)
       .then((response) => {
         dispatch(toggleFetching(true));
         dispatch(setUsers(response.data.items));

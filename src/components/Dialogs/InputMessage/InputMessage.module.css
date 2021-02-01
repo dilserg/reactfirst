@@ -19,13 +19,13 @@
 }
 .send_button{
     top: 20px;
-    right: 30px;
+    right: 0px;
     position: absolute;
     background-color: #646464;
     font-size: 20px;
     border: none;
     height: 35px;
-    width: 5%;
+    width: 60px;
 }
 .send_button:hover{
     background-color: #4a4a4a;
