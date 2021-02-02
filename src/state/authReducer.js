@@ -39,4 +39,10 @@ export const authMe = () => {
     }
 };
 
+export const LogIn = (data) =>{
+  return (dispatch)=>{
+    userAPI.authLogin(data)
+  }
+}
+
 export default authReducer;

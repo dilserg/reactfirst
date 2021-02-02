@@ -17,7 +17,13 @@ const userAPI = {
   
   getProfile: id => instance.get(`profile/${id}`),
   
-  authMe: () => instance.get(`auth/me`)
+  authMe: () => instance.get(`auth/me`),
+  
+  getStatus: (id) => instance.get(`profile/status/${id}`),
+  
+  setNewStatus: (status) => instance.put(`profile/status`, {status:status}),
+  
+  authLogin: (data)=> instance.post(`auth/login`, {email:data.email,password:data.password})
 };
 
 export default userAPI;

@@ -2,9 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import Menu from './Menu';
 import {getUsers, toFirstPage} from '../../state/AllUsersReducer';
-import {getProfile} from '../../state/profileReducer';
+import {getProfile, getStatus} from '../../state/profileReducer';
 
 class MenuContainer extends React.Component {
+  
+  
   
   render() {
     return <Menu {...this.props}/>
@@ -29,6 +31,9 @@ const mapDispatchToProps =dispatch => {
     },
     getProfile(id){
       dispatch(getProfile(id))
+    },
+    getStatus(id){
+      dispatch(getStatus(id))
     }
   }
 }

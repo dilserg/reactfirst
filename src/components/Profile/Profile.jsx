@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './Profile.module.css';
-import Info from './Info/Info';
 import Posts from './Posts/Posts';
 import Preloader from '../common/Preloader/Preloader';
 import MyPhoto from 'C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png';
 import {NavLink} from 'react-router-dom';
+import InfoContainer from './Info/InfoContainer';
 
 
 const Profile = (props) => {
@@ -20,8 +20,9 @@ const Profile = (props) => {
           <button className={styles.button}>Edit</button>
         </NavLink>
       </div>
-      <Info name={props.name} surname={props.surname} university={props.university} city={props.city}
-            age={props.age}/>
+      <InfoContainer name={props.name} surname={props.surname} university={props.university} city={props.city}
+                     age={props.age} status={props.status} setStatus={props.setStatus} linkID={props.linkID}
+                     id={props.id} myID={props.myID} getStatus={props.getStatus}/>
       <Posts postsData={props.postsData} postInputText={props.postInputText} addPost={props.addPost}
              updateText={props.updateText}/>
     </div>

@@ -10,14 +10,18 @@ const Menu = (props) => {
   };
   
   const loadProfile = () =>{
-    props.getProfile(props.id)
+    props.getStatus(props.id);
+    setTimeout(()=>{
+      props.getProfile(props.id);
+    },1)
   }
   
   return (
     <nav className={styles.nav}>
       <ul>
         <li>
-          <NavLink onClick={loadProfile} activeClassName={styles.active} className={styles.item} to="/profile">Profile</NavLink>
+          <NavLink exact onClick={loadProfile} activeClassName={styles.active} className={styles.item} to="/profile">
+            Profile</NavLink>
         </li>
         <li>
           <NavLink activeClassName={styles.active} className={styles.item} to="/dialogs">Messages</NavLink>

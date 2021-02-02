@@ -1,20 +1,22 @@
 import React from 'react';
 import styles from './Info.module.css';
-import FullInfo from './Description/FullInfo';
+
 import Description from './Description/Description';
 
 
-const Info = (props) => {
-
+class Info extends React.Component {
   
-  return (
-    <div className={styles.info}>
-      <div className={styles.name}>
-        {props.name} {props.surname}
+  render() {
+    return (
+      <div className={styles.info}>
+        <div className={styles.name}>
+          {this.props.name} {this.props.surname}
+        </div>
+        {this.props.status()}
+        <Description university={this.props.university} city={this.props.city} age={this.props.age}/>
       </div>
-      <Description university={props.university} city={props.city} age={props.age}/>
-      <FullInfo/>
-    </div>
-  );
-};
+    );
+  }
+}
+
 export default Info;

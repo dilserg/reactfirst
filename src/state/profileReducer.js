@@ -13,7 +13,7 @@ const initialState = {
       university: null,
       photo:MyPhoto
     },
-    
+    status:''
   },
   
   posts: {
@@ -94,6 +94,13 @@ const profileReducer = (state = initialState, action) => {
         isFetching: action.isFetching
       }
       
+    case 'SET-STATUS':
+      return {
+        ...state,
+        info:{...state.info, status:action.status},
+      }
+      
+      
     default:
       return state;
   }
@@ -104,6 +111,8 @@ export default profileReducer;
 export const setProfile = (data) => ({type: 'SET-PROFILE',data});
 
 export const addPostAC = () => ({type: 'ADD-POST'});
+
+export const setStatus = status => ({type:'SET-STATUS', status})
 
 export const updatePostTextAC = newText => {
   return {
@@ -123,4 +132,17 @@ export const getProfile=(id)=>{
         dispatch(toggleProfileFetching(false));
       })
   }
+}
+
+export const getStatus = (id) =>{
+  return (dispatch)=>{
+    userAPI.getStatus(id)
+      .then((response)=>{
+        dispatch(setStatus(response.data))
+      })
+  }
+}
+
+export const setNewStatus = (status) =>{
+    return userAPI.setNewStatus(status)
 }
