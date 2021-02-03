@@ -9,6 +9,8 @@ const Menu = (props) => {
     props.getUsers(1, props.usersOnOnePage);
   };
   
+  
+  
   const loadProfile = () =>{
     props.getStatus(props.id);
     setTimeout(()=>{
@@ -20,8 +22,11 @@ const Menu = (props) => {
     <nav className={styles.nav}>
       <ul>
         <li>
-          <NavLink exact onClick={loadProfile} activeClassName={styles.active} className={styles.item} to="/profile">
-            Profile</NavLink>
+          {props.isAuthorized
+            ? <NavLink exact onClick={loadProfile} activeClassName={styles.active} className={styles.item} to="/profile">
+              Profile</NavLink>
+            : <NavLink to='/auth' className={styles.item}>Profile</NavLink>
+          }
         </li>
         <li>
           <NavLink activeClassName={styles.active} className={styles.item} to="/dialogs">Messages</NavLink>

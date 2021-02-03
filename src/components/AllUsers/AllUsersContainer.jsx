@@ -11,7 +11,6 @@ import {
 import User from './User/User';
 import MalePhoto from 'C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png';
 import AllUsers from './AllUsers';
-import WithAuthRedirect from '../HOC/WithAuthRedirect';
 
 
 class AllUsersContainer extends React.Component {
@@ -26,7 +25,7 @@ class AllUsersContainer extends React.Component {
       return <User isFollowed={user.followed} name={user.name} surname={user.surname} id={user.id}
                    status={user.status} follow={this.props.follow} unfollow={this.props.unfollow}
                    photo={user.photos.small === null ? MalePhoto : user.photos.small}
-                   toggleFollowingProgress={this.props.toggleFollowingProgress}
+                   toggleFollowingProgress={this.props.toggleFollowingProgress} isAuthorized={this.props.isAuthorized}
                    usersInFollowingProgress={this.props.usersInFollowingProgress}/>;
     });
     
@@ -57,6 +56,7 @@ const mapStateToProps = state => {
     pagesList.push(i);
   
   return {
+    isAuthorized: state.auth.isAuthorized,
     usersInFollowingProgress: state.allUsers.usersInFollowingProgress,
     usersList: state.allUsers.users,
     pagesList,
@@ -67,7 +67,6 @@ const mapStateToProps = state => {
 };
 
 
-let WithRedirectAllUsersContainer = WithAuthRedirect(AllUsersContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AllUsersContainer)
 
-export default connect(mapStateToProps, mapDispatchToProps)(WithRedirectAllUsersContainer);
 

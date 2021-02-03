@@ -6,7 +6,9 @@ import {NavLink} from 'react-router-dom';
 const Header = (props) => {
   const block = () =>{
     if (props.login){
-      return <NavLink onClick={()=>props.getProfile(props.id)} to={`/profile/${props.id}`}>{props.login}</NavLink>
+      if (props.isFetching)
+        return undefined
+      return <NavLink onClick={props.logOut} to='/auth'>Log out</NavLink>
     }
     return <NavLink to='/auth'>Login</NavLink>
   }
@@ -18,7 +20,7 @@ const Header = (props) => {
           <img src={twitter} alt=''/>
         </a>
         <div className={styles.login}>
-            {block()}
+            {props.path === '/auth' || block()}
         </div>
       </div>
     </header>)

@@ -17,6 +17,7 @@ class MenuContainer extends React.Component {
 const mapStateToProps = state =>{
   return {
     id:state.auth.id,
+    isAuthorized: state.auth.isAuthorized,
     usersOnOnePage: state.allUsers.usersOnOnePage
   }
 }

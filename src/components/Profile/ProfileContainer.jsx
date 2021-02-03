@@ -7,8 +7,7 @@ import {
   getProfile,
   getStatus,
   setNewStatus,
-  setProfile,
-  updatePostTextAC
+  setProfile
 } from '../../state/profileReducer';
 import {withRouter} from 'react-router';
 import WithAuthRedirect from '../HOC/WithAuthRedirect';
@@ -21,9 +20,14 @@ class ProfileContainer extends React.Component {
     this.props.getProfile(id);
   }
   
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps.isAuthorized !== this.props.isAuthorized) {
+      let id = this.props.match.params.id || this.props.id || this.props.myID;
+      this.props.getProfile(id);
+    }
+  }
   
   render() {
-    
     return <Profile {...this.props} linkID={this.props.match.params.id}/>;
   }
 }
@@ -40,13 +44,13 @@ const mapStateToProps = state => {
     surname: state.profile.info.personInfo.surname,
     photo: state.profile.info.personInfo.photo,
     postsData,
-    postInputText: state.profile.posts.postInputText,
     university: state.profile.info.personInfo.university,
     city: state.profile.info.personInfo.city,
     age: state.profile.info.personInfo.age,
     myID: state.auth.id,
     isFetching: state.profile.isFetching,
     status: state.profile.info.status,
+    isAuthorized: state.auth.isAuthorized,
   };
 };
 
@@ -61,12 +65,8 @@ const mapDispatchToProps = dispatch => {
     setProfile(data) {
       dispatch(setProfile(data));
     },
-    updateText(postText) {
-      let text = postText.current.value;
-      dispatch(updatePostTextAC(text));
-    },
-    addPost() {
-      dispatch(addPostAC());
+    addPost(postText) {
+      dispatch(addPostAC(postText));
     },
     getProfile(id) {
       dispatch(getProfile(id));
@@ -78,5 +78,5 @@ const mapDispatchToProps = dispatch => {
 export default compose(
 connect(mapStateToProps, mapDispatchToProps),
   withRouter,
-  // WithAuthRedirect,
+  WithAuthRedirect,
 )(ProfileContainer);

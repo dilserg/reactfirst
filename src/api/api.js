@@ -23,7 +23,9 @@ const userAPI = {
   
   setNewStatus: (status) => instance.put(`profile/status`, {status:status}),
   
-  authLogin: (data)=> instance.post(`auth/login`, {email:data.email,password:data.password})
+  authLogin: (data)=> instance.post(`auth/login`, {email:data.email,password:data.password, rememberMe:data.rememberMe}),
+  
+  LogOut : ()=> instance.delete(`auth/login`)
 };
 
 export default userAPI;

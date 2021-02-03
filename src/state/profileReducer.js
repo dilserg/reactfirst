@@ -57,9 +57,7 @@ const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'ADD-POST':
       stateCopy = {...state};
-      
-      const text = state.posts.postInputText.trim();
-      
+      const text = action.postText.trim();
       if (text) {
         stateCopy.posts = {
           postsData: [{
@@ -74,11 +72,7 @@ const profileReducer = (state = initialState, action) => {
       }
       return stateCopy;
       
-    case 'UPDATE-POST-TEXT':
-      stateCopy = {...state};
-      stateCopy.posts.postInputText = action.newPostText;
-      return stateCopy;
-    
+      
     case 'SET-PROFILE':
       stateCopy = {...state}
       stateCopy.info.personInfo = {
@@ -88,11 +82,13 @@ const profileReducer = (state = initialState, action) => {
       }
       return stateCopy;
 
+      
     case 'TOGGLE-PROFILE-FETCHING':
       return {
         ...state,
         isFetching: action.isFetching
       }
+      
       
     case 'SET-STATUS':
       return {
@@ -110,16 +106,9 @@ export default profileReducer;
 
 export const setProfile = (data) => ({type: 'SET-PROFILE',data});
 
-export const addPostAC = () => ({type: 'ADD-POST'});
+export const addPostAC = (postText) => ({type: 'ADD-POST',postText});
 
 export const setStatus = status => ({type:'SET-STATUS', status})
-
-export const updatePostTextAC = newText => {
-  return {
-    type: 'UPDATE-POST-TEXT',
-    newPostText: newText
-  };
-};
 
 const toggleProfileFetching = (isFetching) => ({type:'TOGGLE-PROFILE-FETCHING',isFetching})
 

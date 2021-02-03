@@ -34,7 +34,7 @@ const User = (props) => {
         <span className={styles.dim}>status: </span>{props.status}
       </div>
       <div className={styles.button}>
-        {button()}
+        {props.isAuthorized && button()}
       </div>
     </div>
   );

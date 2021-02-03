@@ -48,7 +48,7 @@ button:focus{
     outline: none;
 }
 .App {
-    max-width: 1550px;
+    padding: 0 200px;
     margin: 0 auto;
     display: grid;
     row-gap: 25px;

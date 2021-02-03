@@ -1,22 +1,26 @@
 import React from 'react';
 import styles from './InputMessage.module.css';
-import TextareaAutosize from 'react-textarea-autosize';
+import {Form, Field} from 'react-final-form';
+
+
+const InputMessageForm = props =>{
+  const onSubmit = data => props.sendMessage(data.messageText)
+  return <Form onSubmit={onSubmit}  render={({handleSubmit})=>(
+    <form onSubmit={handleSubmit} >
+      <Field component='textarea' name='messageText' className={styles.textarea} placeholder="Say something..."
+             autoFocus />
+      <button className={styles.send_button}>send</button>
+    </form>
+  )}/>
+}
 
 const InputMessage = (props) => {
-  
-  let messageText = React.createRef();
-  
-  const updateMessage = () => {
-    props.updateInputMessage(messageText);
-  };
-  
   return (
     <div className={styles.input}>
-      <TextareaAutosize ref={messageText} className={styles.textarea} placeholder="Say something..." autoFocus
-                        maxRows={4} value={props.messageInputText} onChange={updateMessage}/>
-      <button onClick={props.sendMessage} className={styles.send_button}>send</button>
+      <InputMessageForm sendMessage={props.sendMessage}/>
     </div>
   );
 };
+
 
 export default InputMessage;

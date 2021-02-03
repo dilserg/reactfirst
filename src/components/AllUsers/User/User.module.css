@@ -3,13 +3,13 @@
     background-color: #1d1d1d;
     font-size: 30px;
     display: grid;
-    grid-template: 60px auto /120px auto 100px;
+    grid-template: 70px auto /120px auto 100px;
     grid-template-areas: "photo info button"
                         "photo status button";
     margin: 20px 20px 35px 20px;
 }
 .dim{
-    font-size: 25px;
+    font-size: 22px;
     color: #646464;
 }
 .photo{
@@ -29,6 +29,8 @@
 }
 .status{
     grid-area: status;
+    color: white;
+    font-size: 22px;
 }
 .button{
     grid-area: button;

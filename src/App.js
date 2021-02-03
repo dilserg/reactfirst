@@ -8,7 +8,7 @@ import EditPage from './components/EditPage/EditPage';
 import MenuContainer from './components/Menu/MenuContainer';
 import AuthPageContainer from './components/AuthPage/AuthPageContainer';
 
-const App = (props) => {
+const App=()=> {
   return (
     <BrowserRouter>
       <HeaderContainer/>
@@ -25,6 +25,6 @@ const App = (props) => {
       </div>
     </BrowserRouter>
   );
-};
+}
 
 export default App;

@@ -3,7 +3,7 @@
     padding: 20px;
     background-color: #1d1d1d;
     line-height: 40px;
-    width: 500px;
+    width: 600px;
     margin: 50px auto;
 }
 .login, .password{
@@ -12,7 +12,10 @@
     justify-content: space-between;
 }
 .login input, .password input{
+    /*border: red 2px solid;*/
+
     outline: none;
+    min-width: 50%;
     width: 100%;
     font-size: 30px;
     margin-top: 10px;
@@ -33,4 +36,8 @@
 }
 .button:hover{
     background-color: #b3b3b3;
+}
+.preloader{
+    width: 100px;
+    margin: 100px auto 100px auto;
 }
