@@ -4,7 +4,7 @@
     background-color: #1d1d1d;
     line-height: 40px;
     width: 600px;
-    margin: 50px auto;
+    margin: 10px auto 40px auto;
 }
 .login, .password{
     color: white;
@@ -40,4 +40,18 @@
 .preloader{
     width: 100px;
     margin: 100px auto 100px auto;
+}
+.warning{
+    position: relative;
+    top: -7px;
+    color: #E2574C;
+    padding-left: 5px;
+    font-size: 30px;
+}
+.image{
+    height: 30px;
+}
+.warningBlock{
+    margin: 0 auto;
+    width: 370px;
 }

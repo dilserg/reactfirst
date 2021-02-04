@@ -22,7 +22,7 @@ const Profile = (props) => {
       </div>
       <InfoContainer name={props.name} surname={props.surname} university={props.university} city={props.city}
                      age={props.age} status={props.status} setStatus={props.setStatus} linkID={props.linkID}
-                     id={props.id} myID={props.myID} getStatus={props.getStatus}/>
+                     myID={props.myID} getStatus={props.getStatus}/>
       <Posts postsData={props.postsData} postInputText={props.postInputText} addPost={props.addPost}
              updateText={props.updateText}/>
     </div>

@@ -1,17 +1,12 @@
 import React from 'react';
 import Header from './Header';
 import {getProfile} from '../../state/profileReducer';
-import {authMe, logOut} from '../../state/authReducer';
+import {logOut} from '../../state/authReducer';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {compose} from 'redux';
 
 class HeaderContainer extends React.Component {
-  
-  
-  componentDidMount() {
-    this.props.getData();
-  }
   
   render() {
     return (
@@ -31,7 +26,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   getProfile,
-  getData: authMe,
   logOut,
 };
 

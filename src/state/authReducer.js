@@ -1,12 +1,12 @@
 import userAPI from '../api/api';
-import {Redirect} from 'react-router-dom';
 
 let initialState = {
   id: null,
   login: null,
   email: null,
   isAuthorized: false,
-  isFetching: false
+  isFetching: false,
+  hasError: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -31,6 +31,12 @@ const authReducer = (state = initialState, action) => {
         ...state
       };
     
+    case 'HAS-ERROR':
+      return {
+        ...state,
+        hasError: action.error
+      };
+    
     case 'TOGGLE-FETCHING':
       return {
         ...state,
@@ -41,48 +47,53 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
+const hasError = (error) => ({type: 'HAS-ERROR', error});
+
 const stateLogOut = () => ({type: 'LOG-OUT'});
 
 const setUserData = (id, email, login) => ({type: 'SET-USER-DATA', data: {id, email, login}});
 
 const toggleAuthFetching = isFetching => ({type: 'TOGGLE-FETCHING', isFetching});
 
-export const authMe = () => {
-  return (dispatch) => {
-    userAPI.authMe()
-      .then((response) => {
-        const data = response.data.data;
-        dispatch(setUserData(data.id, data.email, data.login));
-      });
-  };
+
+export const authMe = () => (dispatch) => {
+  return userAPI.authMe()
+    .then((response) => {
+      const data = response.data.data;
+      dispatch(setUserData(data.id, data.email, data.login));
+    });
 };
 
-export const LogIn = (data) => {
-  return (dispatch) => {
-    dispatch(toggleAuthFetching(true));
-    userAPI.authLogin(data).then(() => {
-        userAPI.authMe()
-          .then((response) => {
-            const data = response.data.data;
-            dispatch(setUserData(data.id, data.email, data.login));
-            dispatch(toggleAuthFetching(false));
-          });
-      }
-    );
-  };
-};
 
-export const logOut = () => {
-  return (dispatch) => {
-    dispatch(toggleAuthFetching(true));
-    userAPI.LogOut().then((response) => {
-        if (response.data.resultCode === 0) {
-          dispatch(stateLogOut());
-        }
+export const LogIn = (data) => dispatch => {
+  dispatch(toggleAuthFetching(true));
+  return userAPI.authLogin(data).then((response) => {
+      if (response.data.resultCode === 0) {
+        userAPI.authMe().then((response) => {
+          const data = response.data.data;
+          dispatch(setUserData(data.id, data.email, data.login));
+          dispatch(hasError(false));
+          dispatch(toggleAuthFetching(false));
+        });
+      } else {
+        dispatch(hasError(true));
         dispatch(toggleAuthFetching(false));
       }
-    );
-  };
+    }
+  );
+};
+
+
+export const logOut = () => dispatch => {
+  dispatch(toggleAuthFetching(true));
+  return userAPI.LogOut().then((response) => {
+    debugger
+      if (response.data.resultCode === 0) {
+        dispatch(stateLogOut());
+      }
+      dispatch(toggleAuthFetching(false));
+    }
+  );
 };
 
 

@@ -22,7 +22,7 @@
 
 }
 .message{
-    grid-template: 1fr 1fr / 90px 1fr;
+    grid-template: 30px 1fr / 90px auto;
     display: grid;
     grid-template-areas: "photo name"
                         "photo text";

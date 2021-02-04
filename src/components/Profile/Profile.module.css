@@ -2,12 +2,10 @@
     display: grid;
     color: white;
     font-size: 30px;
-    min-height: 500px;
     grid-template-areas: "avatar info"
                         ". posts";
     grid-template-columns: 240px auto;
     row-gap: 20px;
-    max-width: 1500px;
 }
 .avatar img{
     height: 200px;

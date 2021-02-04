@@ -12,10 +12,11 @@ class AuthPageContainer extends React.Component {
   componentDidMount() {
     this.props.getProfile(this.props.id)
   }
+  
   render() {
     if (this.props.isAuthorized)
       return <Redirect to='/profile'/>;
-    return <AuthPage isFetching={this.props.isFetching} logIn={this.props.logIn}/>;
+    return <AuthPage hasError={this.props.hasError} isFetching={this.props.isFetching} logIn={this.props.logIn}/>;
   }
 }
 
@@ -35,7 +36,8 @@ const mapStateToProps = state => {
   return {
     isAuthorized: state.auth.isAuthorized,
     id:state.auth.id,
-    isFetching: state.auth.isFetching
+    isFetching: state.auth.isFetching,
+    hasError:state.auth.hasError
   };
 };
 

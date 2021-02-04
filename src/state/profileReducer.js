@@ -1,19 +1,20 @@
 import MyPhoto from 'C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png';
 import userAPI from '../api/api';
+import {Redirect} from 'react-router-dom';
 
 const initialState = {
   
   info: {
     personInfo: {
-      id:null,
+      id: null,
       name: null,
       surname: null,
       city: null,
       age: null,
       university: null,
-      photo:MyPhoto
+      photo: MyPhoto
     },
-    status:''
+    status: ''
   },
   
   posts: {
@@ -71,32 +72,32 @@ const profileReducer = (state = initialState, action) => {
         };
       }
       return stateCopy;
-      
-      
+    
+    
     case 'SET-PROFILE':
-      stateCopy = {...state}
+      stateCopy = {...state};
       stateCopy.info.personInfo = {
         ...state.info.personInfo,
         name: action.data.fullName,
         photo: action.data.photos.large,
-      }
+      };
       return stateCopy;
-
-      
+    
+    
     case 'TOGGLE-PROFILE-FETCHING':
       return {
         ...state,
         isFetching: action.isFetching
-      }
-      
-      
+      };
+    
+    
     case 'SET-STATUS':
       return {
         ...state,
-        info:{...state.info, status:action.status},
-      }
-      
-      
+        info: {...state.info, status: action.status},
+      };
+    
+    
     default:
       return state;
   }
@@ -104,34 +105,34 @@ const profileReducer = (state = initialState, action) => {
 
 export default profileReducer;
 
-export const setProfile = (data) => ({type: 'SET-PROFILE',data});
+export const setProfile = (data) => ({type: 'SET-PROFILE', data});
 
-export const addPostAC = (postText) => ({type: 'ADD-POST',postText});
+export const addPostAC = (postText) => ({type: 'ADD-POST', postText});
 
-export const setStatus = status => ({type:'SET-STATUS', status})
+export const setStatus = status => ({type: 'SET-STATUS', status});
 
-const toggleProfileFetching = (isFetching) => ({type:'TOGGLE-PROFILE-FETCHING',isFetching})
+const toggleProfileFetching = (isFetching) => ({type: 'TOGGLE-PROFILE-FETCHING', isFetching});
 
-export const getProfile=(id)=>{
-  return (dispatch) => {
-    dispatch(toggleProfileFetching(true));
-    userAPI.getProfile(id)
-      .then((response) => {
+export const getProfile = (id) => dispatch => {
+  dispatch(toggleProfileFetching(true));
+  return userAPI.getProfile(id)
+    .then((response) => {
+      if (response.data) {
         dispatch(setProfile(response.data));
         dispatch(toggleProfileFetching(false));
-      })
-  }
-}
+      }
+    });
+};
 
-export const getStatus = (id) =>{
-  return (dispatch)=>{
-    userAPI.getStatus(id)
-      .then((response)=>{
-        dispatch(setStatus(response.data))
-      })
-  }
-}
 
-export const setNewStatus = (status) =>{
-    return userAPI.setNewStatus(status)
-}
+export const getStatus = (id) => dispatch => {
+  return userAPI.getStatus(id)
+    .then((response) => {
+      dispatch(setStatus(response.data));
+    });
+};
+
+
+export const setNewStatus = (status) => {
+  return userAPI.setNewStatus(status);
+};

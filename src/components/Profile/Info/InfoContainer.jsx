@@ -10,7 +10,7 @@ class InfoContainer extends Component {
   };
   
   componentDidMount() {
-    let id = this.props.linkID || this.props.id || this.props.myID;
+    let id = this.props.linkID || this.props.myID;
     this.props.getStatus(id);
   }
   
