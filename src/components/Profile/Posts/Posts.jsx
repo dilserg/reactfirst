@@ -7,7 +7,7 @@ const Posts = (props) => {
   return (
     <div className={styles.posts}>
       <div>
-        <NewPostForm addPost={props.addPost}/>
+        <NewPostForm login={props.login} addPost={props.addPost}/>
       </div>
       {props.postsData}
     </div>
@@ -15,7 +15,10 @@ const Posts = (props) => {
 };
 
 const NewPostForm = props =>{
-  const onSubmit = data=>props.addPost(data.postText)
+  const onSubmit = (data,form)=>{
+    props.addPost(data.postText,props.login)
+    data.postText=''
+  }
   return <Form onSubmit={onSubmit}  render={({handleSubmit})=>(
     <form onSubmit={handleSubmit}>
       <Field validate={required} name='postText' component='textarea' placeholder="What's new?" className={styles.input}/>

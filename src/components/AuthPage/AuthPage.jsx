@@ -1,47 +1,38 @@
 import React from 'react';
 import styles from './AuthPage.module.css';
-import {Form, Field} from 'react-final-form';
+import {Field, Form} from 'react-final-form';
 import LoginInput from '../forms/LoginInput';
 import {emailChecker, required} from '../forms/validators';
 import Preloader from '../common/Preloader/Preloader';
-import warning from '../../images/warning.svg';
 
-class AuthPage extends React.Component {
+function AuthPage(props) {
   
-  warning = () => {
-    if (this.props.hasError) {
+  const warning = () => {
+    if (props.hasError) {
       return <div className={styles.warningBlock}>
         <img alt='' className={styles.image} src={warning}/>
         <span className={styles.warning}>wrong email or password</span>
       </div>;
     }
   };
+  return <>
+    {warning()}
+    {props.isFetching
+      ? <div className={styles.preloader}><Preloader/></div>
+      : <LoginForm hasError={props.hasError} logIn={props.logIn}/>}
   
-  
-  render() {
-    return <>
-      {this.warning()}
-      {this.props.isFetching
-        ? <div className={styles.preloader}><Preloader/></div>
-        : <LoginForm hasError={this.props.hasError} logIn={this.props.logIn}/>}
-    
-    </>;
-  }
+  </>;
 }
 
 
 const LoginForm = (props) => {
-  
-  // const validate = () =>{
-  //
-  // }
   
   const onSubmit = (data) => {
     props.logIn(data);
   };
   return (
     <Form onSubmit={onSubmit}
-          render={({handleSubmit, submitError}) => (
+          render={({handleSubmit}) => (
             <form onSubmit={handleSubmit} className={styles.form}>
               <div className={styles.login}>
                 <Field hasError={props.hasError} validate={emailChecker} component={LoginInput} name='email'

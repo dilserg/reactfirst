@@ -1,5 +1,5 @@
-import MyPhoto from 'C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png';
-import FemalePhoto from 'C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Female.png';
+import MyPhoto from '../images/Male.png'
+import FemalePhoto from '../images/Female.png';
 
 const initialState = {
   messages: [
@@ -21,7 +21,6 @@ const initialState = {
       {name: 'Self', content: 'Hello!', photo: MyPhoto},
       {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
       {name: 'Self', content: 'Hello!', photo: MyPhoto},
-    
     ],
   },
 };

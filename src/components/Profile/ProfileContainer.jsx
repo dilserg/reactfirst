@@ -1,64 +1,49 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import Profile from './Profile';
-import Post from './Posts/Post/Post';
-import {
-  addPostAC,
-  getProfile,
-  getStatus,
-  setNewStatus,
-  setProfile
-} from '../../state/profileReducer';
+import {addPost, getProfile, getStatus, setNewStatus, setProfile} from '../../state/profileReducer';
 import {withRouter} from 'react-router';
 import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
+import {
+  getName,
+  getPhoto,
+  getPostsData,
+  getProfileFetchingInfo,
+  getStatusText
+} from '../../state/selectors/profileSelector';
+import {getAuthorizeInfo, getId, getLogin} from '../../state/selectors/authPageSelector';
 
 
-class ProfileContainer extends React.Component {
-  componentDidMount() {
-    let id = this.props.match.params.id || this.props.myID;
-    this.props.getProfile(id);
-  }
+const ProfileContainer = props=> {
+  let id = props.match.params.id || props.myID;
   
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.isAuthorized !== this.props.isAuthorized) {
-      let id = this.props.match.params.id || this.props.myID;
-      this.props.getProfile(id);
-    }
-  }
+  useEffect(()=> props.getProfile(id),[])
   
-  render() {
-    if (!this.props.isAuthorized && !this.props.match.params.id){
-      return <Redirect to='/auth'/>
-    }
-    return <Profile {...this.props} linkID={this.props.match.params.id}/>;
-  }
+  useEffect(()=> props.getProfile(id),[props.isAuthorized])
+  
+  if (!props.isAuthorized && !props.match.params.id)
+    return <Redirect to='/auth'/>;
+  else
+    return <Profile {...props} linkID={props.match.params.id}/>;
 }
 
 const mapStateToProps = state => {
-  
-  let postsData = state.profile.posts.postsData.map((data) => {
-    return <Post name={`${data.name} ${data.surname}`} time={data.date} content={data.content}
-                 likesCount={data.likesCount} ava={data.photo}/>;
-  });
   return {
-    name: state.profile.info.personInfo.name,
-    surname: state.profile.info.personInfo.surname,
-    photo: state.profile.info.personInfo.photo,
-    postsData,
-    university: state.profile.info.personInfo.university,
-    city: state.profile.info.personInfo.city,
-    age: state.profile.info.personInfo.age,
-    myID: state.auth.id,
-    isFetching: state.profile.isFetching,
-    status: state.profile.info.status,
-    isAuthorized: state.auth.isAuthorized,
+    name: getName(state),
+    photo: getPhoto(state),
+    postsData: getPostsData(state),
+    myID: getId(state),
+    isFetching: getProfileFetchingInfo(state),
+    status: getStatusText(state),
+    isAuthorized: getAuthorizeInfo(state),
+    login: getLogin(state)
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    setStatus(profile) {
+    setNewStatus(profile) {
       setNewStatus(profile);
     },
     getStatus(id) {
@@ -67,8 +52,8 @@ const mapDispatchToProps = dispatch => {
     setProfile(data) {
       dispatch(setProfile(data));
     },
-    addPost(postText) {
-      dispatch(addPostAC(postText));
+    addPost(postText,name) {
+      dispatch(addPost(postText,name));
     },
     getProfile(id) {
       dispatch(getProfile(id));

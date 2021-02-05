@@ -20,11 +20,10 @@ const Profile = (props) => {
           <button className={styles.button}>Edit</button>
         </NavLink>
       </div>
-      <InfoContainer name={props.name} surname={props.surname} university={props.university} city={props.city}
-                     age={props.age} status={props.status} setStatus={props.setStatus} linkID={props.linkID}
+      <InfoContainer name={props.name} status={props.status} setNewStatus={props.setNewStatus} linkID={props.linkID}
                      myID={props.myID} getStatus={props.getStatus}/>
       <Posts postsData={props.postsData} postInputText={props.postInputText} addPost={props.addPost}
-             updateText={props.updateText}/>
+             updateText={props.updateText} login={props.login}/>
     </div>
   );
 };

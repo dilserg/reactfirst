@@ -2,28 +2,14 @@ import React from 'react';
 import styles from './Menu.module.css';
 import {NavLink} from 'react-router-dom';
 
-const Menu = (props) => {
-  
-  const toFirstPage = () => {
-    props.toFirstPage();
-    props.getUsers(1, props.usersOnOnePage);
-  };
-  
-  
-  
-  const loadProfile = () =>{
-    props.getStatus(props.id);
-    setTimeout(()=>{
-      props.getProfile(props.id);
-    },1)
-  }
-  
+const Menu = props => {
   return (
     <nav className={styles.nav}>
       <ul>
         <li>
           {props.isAuthorized
-            ? <NavLink exact onClick={loadProfile} activeClassName={styles.active} className={styles.item} to="/profile">
+            ? <NavLink exact onClick={props.loadProfile} activeClassName={styles.active} className={styles.item}
+                       to="/profile">
               Profile</NavLink>
             : <NavLink to='/auth' className={styles.item}>Profile</NavLink>
           }
@@ -35,12 +21,12 @@ const Menu = (props) => {
           <a className={styles.item} href="#">Friends</a>
         </li>
         <li>
-          <NavLink onClick={toFirstPage} activeClassName={styles.active} className={styles.item}
+          <NavLink  onClick={props.toFirstPage} activeClassName={styles.active} className={styles.item}
                    to="/users">Users</NavLink>
         </li>
       </ul>
     </nav>
   );
-};
+}
 
 export default Menu;

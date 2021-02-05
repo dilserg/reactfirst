@@ -3,7 +3,7 @@ import SidebarMessage from './SidebarMessage';
 
 
 const SidebarMessageContainer = (props) => {
-  return <SidebarMessage name={props.name} content={props.content} id={props.id} scrollDown={props.scrollDown}/>;
+  return <SidebarMessage name={props.name} content={props.content} id={props.id}/>;
 };
 
 export default SidebarMessageContainer;

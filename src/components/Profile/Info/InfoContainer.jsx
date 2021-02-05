@@ -1,82 +1,69 @@
-import React, {Component} from 'react';
+import React,{useState, useEffect} from 'react';
 import Info from './Info';
 import styles from './Info.module.css';
 
-class InfoContainer extends Component {
+
+const InfoContainer = props =>{
+  let [editMode, setEditMode] = useState(false)
+  let [statusText, setStatusText] = useState(props.status)
   
-  state = {
-    editMode: false,
-    statusText: this.props.status
+  const toggleEditMode = () => {
+    setEditMode(!editMode)
+    props.setNewStatus(statusText)
   };
   
-  componentDidMount() {
-    let id = this.props.linkID || this.props.myID;
-    this.props.getStatus(id);
+  const  updateStatusText =(e) =>{
+    setStatusText(e.currentTarget.value)
   }
   
-  componentDidUpdate(prevProps, prevState, snapshot) {
-    if (prevProps.status !== this.props.status) {
-      this.setState({
-        statusText: this.props.status
-      });
-    }
-  }
+  useEffect(()=>{
+    let id = props.linkID || props.myID;
+    props.getStatus(id);
+  },[])
   
-  toggleEditMode = () => {
-    this.setState({
-      editMode: !this.state.editMode,
-    });
-    this.props.setStatus(this.state.statusText);
-  };
+  useEffect(()=>{
+    setStatusText(props.status)
+  },[props.status])
   
-  updateStatusText = (e) => {
-    this.setState({
-      statusText: e.currentTarget.value
-    });
-  };
-  
-  status = () => {
-    if (!this.props.linkID || this.props.myID == this.props.linkID) {
-      if (this.state.editMode)
-        return <input className={styles.input} autoFocus={true} onBlur={this.toggleEditMode}
-                      value={this.state.statusText} onChange={this.updateStatusText}/>;
+  const status = () => {
+    if (!props.linkID || props.myID == props.linkID) {
+      if (editMode)
+        return <input className={styles.input} autoFocus={true} onBlur={toggleEditMode}
+                      value={statusText} onChange={updateStatusText}/>;
       else {
-        if (this.state.statusText) {
+        if (statusText) {
           
-          if (this.state.statusText.length < 75) {
-            return <span onClick={this.toggleEditMode} className={`${styles.status}  ${styles.hover}`}>
-              {this.state.statusText}</span>;
+          if (statusText.length < 75) {
+            return <span onClick={toggleEditMode} className={`${styles.status}  ${styles.hover}`}>
+              {statusText}</span>;
           } else {
             
-            let statusTextSliced = this.state.statusText.slice(0, 75) + '...';
-            return <span onClick={this.toggleEditMode}
+            let statusTextSliced = statusText.slice(0, 75) + '...';
+            return <span onClick={toggleEditMode}
                          className={`${styles.status} ${styles.hover}`}>{statusTextSliced}</span>;
           }
           
         } else
-          return <span onClick={this.toggleEditMode} className={`${styles.status} ${styles.dim} ${styles.hover}`}>
+          return <span onClick={toggleEditMode} className={`${styles.status} ${styles.dim} ${styles.hover}`}>
             set status...</span>;
       }
-    } else if (this.props.linkID) {
-      if (this.state.statusText) {
+    } else if (props.linkID) {
+      if (statusText) {
         
-        if (this.state.statusText.length < 75) {
-          return <span className={styles.status}>{this.state.statusText}</span>;
+        if (statusText.length < 75) {
+          return <span className={styles.status}>{statusText}</span>;
         } else {
-          let statusText = this.state.statusText.slice(0, 75) + '...';
+          let statusText = statusText.slice(0, 75) + '...';
           return <span className={styles.status}>{statusText}</span>;
         }
-        
       } else
         return <span className={`${styles.status} ${styles.dim}`}>no status</span>;
     }
   };
   
-  render() {
-    return (
-      <Info {...this.props} status={this.status}/>
-    );
-  }
+  return (
+    <Info {...props} status={status}/>
+  );
 }
 
 

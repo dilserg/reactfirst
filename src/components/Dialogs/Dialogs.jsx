@@ -6,14 +6,13 @@ import InputMessageContainer from './InputMessage/InputMessageContainer';
 
 
 const Dialogs = (props) => {
-  
   return (
     <div className={styles.dialogs}>
       <div className={styles.sidebar}>
         {props.sidebarMessages}
       </div>
       <div className={styles.wrapper}>
-        <DialogContainer dialog={props.dialog}/>
+        <DialogContainer dialogMessages={props.dialogMessages}/>
         <InputMessageContainer store={props.store} inputMessage={props.inputMessage}/>
       </div>
     </div>

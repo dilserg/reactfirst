@@ -1,44 +1,39 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Menu from './Menu';
-import {getUsers, toFirstPage} from '../../state/AllUsersReducer';
+import {getUsers, goToFirstPage} from '../../state/AllUsersReducer';
 import {getProfile, getStatus} from '../../state/profileReducer';
+import {getAuthorizeInfo, getId} from '../../state/selectors/authPageSelector';
+import {getUsersOnOnePageCount} from '../../state/selectors/allUsersSelectors';
 
-class MenuContainer extends React.Component {
+const MenuContainer = function (props) {
+  const toFirstPage = () => {
+    props.goToFirstPage();
+    props.getUsers(1, props.usersOnOnePage);
+  };
   
-  
-  
-  render() {
-    return <Menu {...this.props}/>
-  }
-}
+  const loadProfile = () => {
+    props.getStatus(props.id);
+    props.getProfile(props.id);
+  };
+  return <Menu loadProfile={loadProfile} toFirstPage={toFirstPage} {...props}/>;
+};
 
 
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
   return {
-    id:state.auth.id,
-    isAuthorized: state.auth.isAuthorized,
-    usersOnOnePage: state.allUsers.usersOnOnePage
-  }
-}
+    id: getId(state),
+    isAuthorized: getAuthorizeInfo(state),
+    usersOnOnePage: getUsersOnOnePageCount(state)
+  };
+};
 
-const mapDispatchToProps =dispatch => {
-  return{
-    toFirstPage(){
-      dispatch(toFirstPage())
-    },
-    getUsers(){
-      dispatch(getUsers())
-    },
-    getProfile(id){
-      dispatch(getProfile(id))
-    },
-    getStatus(id){
-      dispatch(getStatus(id))
-    }
-  }
-}
+const mapDispatchToProps = {
+  goToFirstPage,
+  getUsers,
+  getProfile,
+  getStatus
+};
 
 
-
-export default connect(mapStateToProps,mapDispatchToProps)(MenuContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(MenuContainer);

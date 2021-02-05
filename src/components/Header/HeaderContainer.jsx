@@ -5,22 +5,17 @@ import {logOut} from '../../state/authReducer';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {compose} from 'redux';
+import {getAuthFetching, getLogin} from '../../state/selectors/authPageSelector';
 
-class HeaderContainer extends React.Component {
-  
-  render() {
-    return (
-      <Header logOut={this.props.logOut} getProfile={this.props.getProfile} id={this.props.id}
-              login={this.props.login} path={this.props.location.pathname} isFetching={this.props.isFetching}/>
-    );
-  }
-}
+const HeaderContainer = props => (
+  <Header logOut={props.logOut} getProfile={props.getProfile}
+          login={props.login} path={props.location.pathname} isFetching={props.isFetching}/>
+);
 
 const mapStateToProps = state => {
   return {
-    login: state.auth.login,
-    id: state.auth.id,
-    isFetching: state.auth.isFetching
+    login: getLogin(state),
+    isFetching: getAuthFetching(state)
   };
 };
 

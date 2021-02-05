@@ -2,15 +2,13 @@ import React from 'react';
 import styles from './Header.module.css';
 import twitter from '../../images/twitter.svg';
 import {NavLink} from 'react-router-dom';
-import Preloader from '../common/Preloader/Preloader';
 
 const Header = (props) => {
-  
   
   const block = () => {
     if (props.login) {
       if (props.isFetching)
-        return <Preloader/>
+        return undefined
       return <NavLink onClick={props.logOut} to='/auth'>Log out</NavLink>;
     }
     return <NavLink to='/auth'>Login</NavLink>;
@@ -19,9 +17,9 @@ const Header = (props) => {
   return (
     <header className={styles.header}>
       <div className={styles.content}>
-        <a href='#'>
+        <NavLink to='/'>
           <img src={twitter} alt=''/>
-        </a>
+        </NavLink>
         <div className={styles.login}>
           {props.path === '/auth' || block()}
         </div>

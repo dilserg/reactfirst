@@ -1,43 +1,34 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import AuthPage from './AuthPage';
 import {connect} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {getProfile} from '../../state/profileReducer';
-import {LogIn} from '../../state/authReducer';
+import {logIn} from '../../state/authReducer';
+import {getAuthFetching, getAuthorizeInfo, getErrorInfo, getId} from '../../state/selectors/authPageSelector';
 
 
-
-class AuthPageContainer extends React.Component {
+function AuthPageContainer(props) {
   
-  componentDidMount() {
-    this.props.getProfile(this.props.id)
-  }
+  useEffect(()=>{
+    props.getProfile(props.id)
+  },[props.id])
   
-  render() {
-    if (this.props.isAuthorized)
-      return <Redirect to='/profile'/>;
-    return <AuthPage hasError={this.props.hasError} isFetching={this.props.isFetching} logIn={this.props.logIn}/>;
-  }
+  if (props.isAuthorized)
+    return <Redirect to='/profile'/>;
+  return <AuthPage hasError={props.hasError} isFetching={props.isFetching} logIn={props.logIn}/>;
 }
 
-const mapDispatchToProps = dispatch =>{
-  return{
-    getProfile(){
-      dispatch(getProfile())
-    },
-    logIn(data){
-      dispatch(LogIn(data))
-    }
-    
-  }
+const mapDispatchToProps = {
+    getProfile,
+    logIn
 }
 
 const mapStateToProps = state => {
   return {
-    isAuthorized: state.auth.isAuthorized,
-    id:state.auth.id,
-    isFetching: state.auth.isFetching,
-    hasError:state.auth.hasError
+    isAuthorized: getAuthorizeInfo(state),
+    id: getId(state),
+    isFetching: getAuthFetching(state),
+    hasError:getErrorInfo(state)
   };
 };
 

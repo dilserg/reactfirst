@@ -1,10 +1,11 @@
 import React from 'react';
 import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
+import {getAuthorizeInfo} from '../../state/selectors/authPageSelector';
 
 const mapStateToProps = state =>{
   return{
-    isAuthorized: state.auth.isAuthorized,
+    isAuthorized: getAuthorizeInfo(state),
   }
 }
 

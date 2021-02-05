@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {
   follow, getCount,
@@ -11,29 +11,35 @@ import {
 import User from './User/User';
 import MalePhoto from 'C:\\Users\\dilse\\WebstormProjects\\reactfirst\\src\\images\\Male.png';
 import AllUsers from './AllUsers';
+import {
+  getFetchingInfo,
+  getPagesList, getSelectedPage,
+  getUsersInFollowingProgress,
+  getUsersList, getUsersOnOnePageCount
+} from '../../state/selectors/allUsersSelectors';
+import {getAuthorizeInfo} from '../../state/selectors/authPageSelector';
 
 
-class AllUsersContainer extends React.Component {
+const AllUsersContainer = props => {
   
-  componentDidMount() {
-    this.props.getUsers(this.props.selectedPage, this.props.usersOnOnePage);
-    this.props.getCount();
-  }
+  useEffect(()=>{
+    props.getUsers(props.selectedPage, props.usersOnOnePage)
+    props.getCount();
+  },[props.selectedPage])
   
-  render = () => {
-    let usersList = this.props.usersList.map(user => {
-      return <User isFollowed={user.followed} name={user.name} surname={user.surname} id={user.id}
-                   status={user.status} follow={this.props.follow} unfollow={this.props.unfollow}
-                   photo={user.photos.small === null ? MalePhoto : user.photos.small}
-                   toggleFollowingProgress={this.props.toggleFollowingProgress} isAuthorized={this.props.isAuthorized}
-                   usersInFollowingProgress={this.props.usersInFollowingProgress}/>;
-    });
-    
-    return <AllUsers usersList={usersList} selectedPage={this.props.selectedPage} selectPage={this.props.selectPage}
-                     pagesList={this.props.pagesList} getUsers={this.props.getUsers} isFetching={this.props.isFetching}
-                     usersOnOnePage={this.props.usersOnOnePage}/>;
-  };
-}
+  console.log('render');
+  let usersList = props.usersList.map(user => {
+    return <User isFollowed={user.followed} name={user.name} surname={user.surname} id={user.id}
+                 status={user.status} follow={props.follow} unfollow={props.unfollow}
+                 photo={user.photos.small === null ? MalePhoto : user.photos.small}
+                 toggleFollowingProgress={props.toggleFollowingProgress} isAuthorized={props.isAuthorized}
+                 usersInFollowingProgress={props.usersInFollowingProgress}/>;
+  });
+  
+  return <AllUsers usersList={usersList} selectedPage={props.selectedPage} selectPage={props.selectPage}
+                   pagesList={props.pagesList} getUsers={props.getUsers} isFetching={props.isFetching}
+                   usersOnOnePage={props.usersOnOnePage}/>;
+};
 
 
 const mapDispatchToProps = {
@@ -49,24 +55,18 @@ const mapDispatchToProps = {
 };
 
 const mapStateToProps = state => {
-  
-  let pagesList = [];
-  let pagesCount = Math.ceil(state.allUsers.totalUsersCount / state.allUsers.usersOnOnePage);
-  for (let i = 1; i <= pagesCount; i++)
-    pagesList.push(i);
-  
   return {
-    isAuthorized: state.auth.isAuthorized,
-    usersInFollowingProgress: state.allUsers.usersInFollowingProgress,
-    usersList: state.allUsers.users,
-    pagesList,
-    selectedPage: state.allUsers.selectedPage,
-    isFetching: state.allUsers.isFetching,
-    usersOnOnePage: state.allUsers.usersOnOnePage,
+    isAuthorized: getAuthorizeInfo(state),
+    usersInFollowingProgress: getUsersInFollowingProgress(state),
+    usersList: getUsersList(state),
+    pagesList: getPagesList(state),
+    selectedPage: getSelectedPage(state),
+    isFetching: getFetchingInfo(state),
+    usersOnOnePage: getUsersOnOnePageCount(state),
   };
 };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllUsersContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AllUsersContainer);
 
 

@@ -56,44 +56,37 @@ const setUserData = (id, email, login) => ({type: 'SET-USER-DATA', data: {id, em
 const toggleAuthFetching = isFetching => ({type: 'TOGGLE-FETCHING', isFetching});
 
 
-export const authMe = () => (dispatch) => {
-  return userAPI.authMe()
-    .then((response) => {
-      const data = response.data.data;
-      dispatch(setUserData(data.id, data.email, data.login));
-    });
+export const authMe = () => async (dispatch) => {
+  const response = await userAPI.authMe();
+  const data = response.data.data;
+  return dispatch(setUserData(data.id, data.email, data.login));
 };
 
 
-export const LogIn = (data) => dispatch => {
+export const logIn = (data) => async dispatch => {
   dispatch(toggleAuthFetching(true));
-  return userAPI.authLogin(data).then((response) => {
-      if (response.data.resultCode === 0) {
-        userAPI.authMe().then((response) => {
-          const data = response.data.data;
-          dispatch(setUserData(data.id, data.email, data.login));
-          dispatch(hasError(false));
-          dispatch(toggleAuthFetching(false));
-        });
-      } else {
-        dispatch(hasError(true));
-        dispatch(toggleAuthFetching(false));
-      }
-    }
-  );
+  let response = await userAPI.authLogin(data);
+  if (response.data.resultCode === 0) {
+    response = await userAPI.authMe();
+    const data = response.data.data;
+    dispatch(setUserData(data.id, data.email, data.login));
+    dispatch(hasError(false));
+    dispatch(toggleAuthFetching(false));
+  } else {
+    dispatch(hasError(true));
+    dispatch(toggleAuthFetching(false));
+  }
 };
 
 
-export const logOut = () => dispatch => {
+export const logOut = () => async dispatch => {
   dispatch(toggleAuthFetching(true));
-  return userAPI.LogOut().then((response) => {
-    debugger
-      if (response.data.resultCode === 0) {
-        dispatch(stateLogOut());
-      }
-      dispatch(toggleAuthFetching(false));
-    }
-  );
+  const response = await userAPI.LogOut();
+  if (response.data.resultCode === 0) {
+    dispatch(stateLogOut());
+  }
+  dispatch(toggleAuthFetching(false));
+  
 };
 
 
