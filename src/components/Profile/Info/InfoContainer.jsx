@@ -33,12 +33,12 @@ const InfoContainer = props =>{
       else {
         if (statusText) {
           
-          if (statusText.length < 75) {
+          if (statusText.length < 50) {
             return <span onClick={toggleEditMode} className={`${styles.status}  ${styles.hover}`}>
               {statusText}</span>;
           } else {
             
-            let statusTextSliced = statusText.slice(0, 75) + '...';
+            let statusTextSliced = statusText.slice(0, 50) + '...';
             return <span onClick={toggleEditMode}
                          className={`${styles.status} ${styles.hover}`}>{statusTextSliced}</span>;
           }
@@ -49,11 +49,10 @@ const InfoContainer = props =>{
       }
     } else if (props.linkID) {
       if (statusText) {
-        
-        if (statusText.length < 75) {
+        if (statusText.length < 50) {
           return <span className={styles.status}>{statusText}</span>;
         } else {
-          let statusText = statusText.slice(0, 75) + '...';
+          let statusText = statusText.slice(0, 50) + '...';
           return <span className={styles.status}>{statusText}</span>;
         }
       } else

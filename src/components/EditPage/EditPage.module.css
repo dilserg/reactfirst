@@ -1,20 +1,21 @@
 .head{
+    text-align: center;
     color: white;
-    width: 100px;
-    margin: 0 auto 20px auto;
     font-size: 30px;
     font-weight: 700;
 }
 .text{
+    margin-right: 5px;
     color: white;
     display: inline-block;
-    font-size: 30px;
-    width: 160px;
+    font-size: 24px;
+    width: 170px;
     text-align: end;
-    margin-right: 10px;
 }
 .input{
-    width: 200px;
+    margin-bottom: 10px;
+    font-size: 22px;
+    width: 400px;
     height: 18px;
     outline: none;
     border: none;
@@ -35,5 +36,18 @@
 }
 .textContainer{
     margin: 0 auto 50px auto;
-    width: 400px;
+    width: 800px;
+}
+.select select{
+
+    color: white;
+    font-size: 20px;
+    position: relative;
+    background-color: #3c3c3c;
+    border: none;
+    outline: none;
+}
+.select select:hover{
+    outline: none;
+    border: none;
 }

@@ -99,3 +99,22 @@ export const getStatus = (id) => async dispatch => {
 export const setNewStatus = (status) => {
   userAPI.setNewStatus(status);
 };
+
+export const editPage = (newData) => {
+  const update = {
+    userId:newData.id,
+    lookingForAJob:Boolean(+newData.isLookingForJob),
+    lookingForAJobDescription:newData.job,
+    fullName:newData.name,
+    contacts:{
+      github:newData.github,
+      vk:newData.vk,
+      facebook:newData.facebook,
+      instagram:newData.instagram,
+      twitter:newData.twitter,
+      youtube:newData.youtube,
+      mainLink:newData.mainLink
+    }
+  }
+  userAPI.editPage(update)
+}

@@ -48,8 +48,10 @@ button:focus{
     outline: none;
 }
 .App {
+    margin: 0 auto;
     word-break: break-word;
-    padding: 0 75px;
+    padding: 0 125px;
+    max-width: 1500px;
     display: grid;
     row-gap: 25px;
     column-gap: 10px;
@@ -59,7 +61,6 @@ button:focus{
 }
 .content{
     grid-area: content;
-    margin-right: 150px;
     background-color: #3c3c3c;
     padding: 20px;
 }

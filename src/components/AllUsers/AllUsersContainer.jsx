@@ -27,7 +27,6 @@ const AllUsersContainer = props => {
     props.getCount();
   },[props.selectedPage])
   
-  console.log('render');
   let usersList = props.usersList.map(user => {
     return <User isFollowed={user.followed} name={user.name} surname={user.surname} id={user.id}
                  status={user.status} follow={props.follow} unfollow={props.unfollow}

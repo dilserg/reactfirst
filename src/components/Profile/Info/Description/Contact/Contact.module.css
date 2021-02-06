@@ -1,0 +1,13 @@
+.dim{
+    color: #646464;
+}
+.item{
+    margin-bottom: 10px;
+}
+.contact{
+    text-decoration: none;
+    color: white;
+}
+.contact:hover{
+    text-decoration: underline;
+}

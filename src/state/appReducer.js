@@ -22,7 +22,7 @@ const initialize = () => ({type: 'INITIALIZE'});
 
 export const initializeMe = () => {
   return async dispatch => {
-    dispatch(authMe());
+    await dispatch(authMe());
     dispatch(initialize());
   };
 };

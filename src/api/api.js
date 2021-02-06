@@ -7,7 +7,7 @@ const instance = axios.create({
 });
 
 const userAPI = {
-  getUsers: (selectedPage,usersOnOnePage) => instance.get(`users?page=${selectedPage}&count=${usersOnOnePage}`),
+  getUsers: (selectedPage, usersOnOnePage) => instance.get(`users?page=${selectedPage}&count=${usersOnOnePage}`),
   
   getCount: () => instance.get(`users`),
   
@@ -21,11 +21,18 @@ const userAPI = {
   
   getStatus: (id) => instance.get(`profile/status/${id}`),
   
-  setNewStatus: (status) => instance.put(`profile/status`, {status:status}),
+  setNewStatus: (status) => instance.put(`profile/status`, {status: status}),
   
-  authLogin: (data)=> instance.post(`auth/login`, {email:data.email,password:data.password, rememberMe:data.rememberMe}),
+  authLogin: (data) => instance.post(`auth/login`, {
+    email: data.email,
+    password: data.password,
+    rememberMe: data.rememberMe
+  }),
   
-  LogOut : ()=> instance.delete(`auth/login`)
+  LogOut: () => instance.delete(`auth/login`),
+  
+  editPage: (update) => instance.put('profile', {...update})
+  
 };
 
 export default userAPI;
