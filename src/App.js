@@ -24,7 +24,7 @@ class App extends Component {
     if (!this.props.isInitialized)
       return <div className='preloader'><Preloader/></div>;
     return (
-      <BrowserRouter>
+      <BrowserRouter basename={process.env.PUBLIC_URL}>
         <HeaderContainer/>
         <div className='App'>
           <MenuContainer/>
