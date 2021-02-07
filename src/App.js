@@ -1,6 +1,6 @@
 import './App.css';
 import {lazy} from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, HashRouter, Route} from 'react-router-dom';
 import HeaderContainer from './components/Header/HeaderContainer';
 import MenuContainer from './components/Menu/MenuContainer';
 import {Component} from 'react';
@@ -21,10 +21,10 @@ class App extends Component {
   }
   
   render() {
-    if (!this.props.isInitialized)
-      return <div className='preloader'><Preloader/></div>;
+    // if (!this.props.isInitialized)
+    //   return <div className='preloader'><Preloader/></div>;
     return (
-      <BrowserRouter basename={process.env.PUBLIC_URL}>
+      <HashRouter>
         <HeaderContainer/>
         <div className='App'>
           <MenuContainer/>
@@ -37,7 +37,7 @@ class App extends Component {
             <Route path='/edit' render={WithSuspense(EditPage)}/>
           </div>
         </div>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

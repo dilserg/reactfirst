@@ -19,7 +19,7 @@ const Description = (props) => {
     if (isFullInfo) {
       return <>
         <button onClick={hideFull} className={styles.button}>Hide contacts</button>
-        <FullInfo/>
+        <FullInfo contacts={props.contacts}/>
       </>;
     } else {
       return <button onClick={showFull} className={styles.button}>Show contacts</button>;
@@ -29,11 +29,15 @@ const Description = (props) => {
   return (
     <div className={styles.description}>
       <p className={styles.item}>
-        {props.isLookingForJob
+        <span className={styles.dim}>About me:</span>
+        <span className={styles.info}>{props.aboutMe}</span>
+      </p>
+      <p className={styles.item}>
+        {props.lookingForAJob
           ?<> <span className={styles.dim}>Looking for a:</span>
-          <span className={styles.info}>{props.job}</span></>
+          <span className={styles.info}>{props.lookingForAJobDescription}</span></>
           : <><span className={styles.dim}>Job:</span>
-            <span className={styles.info}>{props.job}</span></>
+            <span className={styles.info}>{props.lookingForAJobDescription}</span></>
         }
       </p>
         {button()}

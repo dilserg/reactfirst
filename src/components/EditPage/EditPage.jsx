@@ -30,6 +30,12 @@ const EditPageForm = () => {
         </div>
         <div>
         <span className={styles.text}>
+        About me:
+        </span>
+          <Field autoComplete='off' name='aboutMe' component='input' className={styles.input} type="text"/>
+        </div>
+        <div>
+        <span className={styles.text}>
         Id:
         </span>
           <Field autoComplete='off' name='id' component='input' className={styles.input} type="number"/>

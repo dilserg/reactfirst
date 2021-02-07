@@ -10,7 +10,7 @@ const Info = props => (
       {props.name}
     </div>
     {props.status()}
-    <Description/>
+    <Description {...props}/>
   </div>
 );
 

@@ -11,6 +11,16 @@ export const getStatusText= state => state.profile.info.status
 
 const getStatePostsData = state => state.profile.posts.postsData
 
+export const getAboutMe = state => state.profile.info.personInfo.aboutMe
+
+export const getLookingForAJobInfo = state => state.profile.info.lookingForAJob
+
+export const getLookingForAJobDescription = state => state.profile.info.lookingForAJobDescription
+
+export const getContacts = state => state.profile.info.contacts
+
+
+
 
 export const getPostsData = createSelector(getStatePostsData, (postsData)=>{
   return postsData.map((data) => {

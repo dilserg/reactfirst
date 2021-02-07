@@ -31,8 +31,13 @@ const userAPI = {
   
   LogOut: () => instance.delete(`auth/login`),
   
-  editPage: (update) => instance.put('profile', {...update})
+  editPage: (update) => instance.put('profile', {...update}),
   
+  uploadPhoto: (photoFile) => {
+    const formdata = new FormData();
+    formdata.append('image',photoFile)
+    return instance.put('profile/photo',formdata)
+  }
 };
 
 export default userAPI;

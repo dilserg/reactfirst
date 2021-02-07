@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import Profile from './Profile';
-import {addPost, getProfile, getStatus, setNewStatus, setProfile} from '../../state/profileReducer';
+import {addPost, getProfile, getStatus, setNewStatus, setProfile, uploadPhoto} from '../../state/profileReducer';
 import {withRouter} from 'react-router';
 import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
 import {
+  getAboutMe, getContacts, getLookingForAJobDescription, getLookingForAJobInfo,
   getName,
   getPhoto,
   getPostsData,
@@ -37,7 +38,11 @@ const mapStateToProps = state => {
     isFetching: getProfileFetchingInfo(state),
     status: getStatusText(state),
     isAuthorized: getAuthorizeInfo(state),
-    login: getLogin(state)
+    login: getLogin(state),
+    aboutMe:getAboutMe(state),
+    lookingForAJob:getLookingForAJobInfo(state),
+    lookingForAJobDescription:getLookingForAJobDescription(state),
+    contacts:getContacts(state),
   };
 };
 
@@ -57,6 +62,9 @@ const mapDispatchToProps = dispatch => {
     },
     getProfile(id) {
       dispatch(getProfile(id));
+    },
+    uploadPhoto(file){
+      dispatch(uploadPhoto(file))
     }
   };
 };

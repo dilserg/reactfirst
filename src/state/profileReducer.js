@@ -6,7 +6,19 @@ const initialState = {
     personInfo: {
       id: null,
       name: null,
+      aboutMe:null,
       photo: MyPhoto,
+    },
+    lookingForAJob:false,
+    lookingForAJobDescription:null,
+    contacts:{
+      github:null,
+      vk:null,
+      facebook:null,
+      instagram:null,
+      twitter:null,
+      youtube:null,
+      mainLink:null
     },
     status: ''
   },
@@ -42,12 +54,29 @@ const profileReducer = (state = initialState, action) => {
     
     
     case 'SET-PROFILE':
+      debugger
       stateCopy = {...state};
-      stateCopy.info.personInfo = {
-        ...state.info.personInfo,
-        name: action.data.fullName,
-        photo: action.data.photos.large,
-      };
+      stateCopy.info = {
+        ...state.info,
+        personInfo:{
+          ...state.info.personInfo,
+          name: action.data.fullName,
+          photo: action.data.photos.large,
+          aboutMe:action.data.aboutMe,
+        },
+        lookingForAJob:action.data.lookingForAJob,
+        lookingForAJobDescription:action.data.lookingForAJobDescription,
+        contacts:{
+          ...state.info.contacts,
+          github:action.data.contacts.github,
+          vk:action.data.contacts.vk,
+          facebook:action.data.contacts.facebook,
+          instagram:action.data.contacts.instagram,
+          twitter:action.data.contacts.twitter,
+          youtube:action.data.contacts.youtube,
+          mainLink:action.data.contacts.mainLink
+        },
+      }
       return stateCopy;
     
     
@@ -64,6 +93,11 @@ const profileReducer = (state = initialState, action) => {
         info: {...state.info, status: action.status},
       };
     
+    case 'SET-NEW-PHOTO':
+      return {
+        ...state,
+        info:{personInfo: {photo: action.photo}}
+      }
     
     default:
       return state;
@@ -79,6 +113,9 @@ export const addPost = (postText, name) => ({type: 'ADD-POST', postText, name});
 export const setStatus = status => ({type: 'SET-STATUS', status});
 
 const toggleProfileFetching = (isFetching) => ({type: 'TOGGLE-PROFILE-FETCHING', isFetching});
+
+const setNewPhoto = (photo) => ({type:'SET-NEW-PHOTO', photo})
+
 
 export const getProfile = (id) => async dispatch => {
   dispatch(toggleProfileFetching(true));
@@ -103,18 +140,27 @@ export const setNewStatus = (status) => {
 export const editPage = (newData) => {
   const update = {
     userId:newData.id,
+    aboutMe:newData.aboutMe,
     lookingForAJob:Boolean(+newData.isLookingForJob),
     lookingForAJobDescription:newData.job,
     fullName:newData.name,
     contacts:{
-      github:newData.github,
-      vk:newData.vk,
-      facebook:newData.facebook,
-      instagram:newData.instagram,
-      twitter:newData.twitter,
-      youtube:newData.youtube,
+      github:newData.github && 'github.com/'+newData.github,
+      vk:newData.vk && 'vk.com/'+newData.vk,
+      facebook:newData.facebook && 'facebook.com/'+newData.facebook,
+      instagram:newData.instagram && 'instagram.com/'+newData.instagram,
+      twitter:newData.twitter && 'twitter.com/'+newData.twitter,
+      youtube:newData.youtube && 'youtube.com/'+newData.youtube,
       mainLink:newData.mainLink
     }
   }
+  debugger
   userAPI.editPage(update)
+}
+
+export const uploadPhoto = (photoFile) => async dispatch =>{
+  const response = await userAPI.uploadPhoto(photoFile)
+  if(response.data.resultCode === 0){
+    dispatch(setNewPhoto(response.data.data.photos.small))
+  }
 }

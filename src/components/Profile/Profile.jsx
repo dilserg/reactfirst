@@ -12,16 +12,27 @@ const Profile = (props) => {
     return <div className={styles.preloader}><Preloader/></div>;
   }
   
+  const onPhotoUpload = (file) => {
+    props.uploadPhoto(file.target.files[0]);
+  };
   return (
     <div className={styles.content}>
       <div className={styles.avatar}>
-        <img src={props.photo || MyPhoto} alt=""/><br/>
-        <NavLink to="/edit">
+        <div className={styles.relative}>
+          <img className={styles.photo} src={props.photo || MyPhoto} alt=""/><br/>
+          <label className={styles.label}>
+            <input className={styles.uploader} onChange={onPhotoUpload} accept="image/x-png,image/jpeg" type='file'/>
+            upload photo
+          </label>
+        </div>
+        {(!!props.linkID && props.linkID != props.myID) || <NavLink to="/edit">
           <button className={styles.button}>Edit</button>
-        </NavLink>
+        </NavLink>}
       </div>
+      
       <InfoContainer name={props.name} status={props.status} setNewStatus={props.setNewStatus} linkID={props.linkID}
-                     myID={props.myID} getStatus={props.getStatus}/>
+                     myID={props.myID} getStatus={props.getStatus} aboutMe={props.aboutMe} contacts={props.contacts}
+                     lookingForAJob={props.lookingForAJob} lookingForAJobDescription={props.lookingForAJobDescription}/>
       <Posts postsData={props.postsData} postInputText={props.postInputText} addPost={props.addPost}
              updateText={props.updateText} login={props.login}/>
     </div>
