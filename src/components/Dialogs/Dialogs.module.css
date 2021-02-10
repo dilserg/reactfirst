@@ -1,20 +1,22 @@
 .dialogs{
     display: grid;
     column-gap: 10px;
-    grid-template-columns: 200px minmax(200px, auto);
+    grid-template-columns: 200px auto;
     grid-template-areas: "sidebar wrapper";
 }
 .sidebar{
     height: 75vh;
-    padding-right: 10px;
     grid-area: sidebar;
     overflow-y: auto;
 }
 .wrapper{
+    padding-left: 10px;
     grid-area: wrapper;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-content: stretch;
-    min-height: 100%;
+}
+.noId{
+    width: 1040px;
 }

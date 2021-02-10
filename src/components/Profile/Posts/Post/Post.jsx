@@ -9,6 +9,10 @@ const Post = (props) => {
   let [likes,setLikes] = useState(props.likesCount)
   let [isLiked, setIsLiked] = useState(false)
   
+  const deletePost = () =>{
+    props.deletePost(props.id)
+  }
+  
   const addLike = () => {
     if(!isLiked)
       setLikes(prevState => prevState+1)
@@ -37,6 +41,9 @@ const Post = (props) => {
         ? <img onClick={addLike} className={styles.icon} src={liked} alt=""/>
         : <img onClick={addLike} className={`${styles.icon} ${styles.colored}`} src={like} alt=""/>}
         <span className={styles.likes_count}>{likes}</span>
+      </div>
+      <div onClick={deletePost} className={styles.cross}>
+        &#10006;
       </div>
     </div>
   );

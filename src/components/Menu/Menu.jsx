@@ -18,9 +18,6 @@ const Menu = props => {
           <NavLink activeClassName={styles.active} className={styles.item} to="/dialogs">Messages</NavLink>
         </li>
         <li>
-          <a className={styles.item} href="#">Friends</a>
-        </li>
-        <li>
           <NavLink  onClick={props.toFirstPage} activeClassName={styles.active} className={styles.item}
                    to="/users">Users</NavLink>
         </li>

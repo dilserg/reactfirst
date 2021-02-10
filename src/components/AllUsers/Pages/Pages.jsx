@@ -21,8 +21,8 @@ const Pages = (props) => {
     props.selectPage(page);
   };
   
-  pagesList = pagesList.map((page) => {
-    return <span onClick={() => selectPage(page)}
+  pagesList = pagesList.map((page,index) => {
+    return <span onClick={() => selectPage(page)} key={index}
                  className={page === props.selectedPage ? `${styles.page} ${styles.selected}` : styles.page}>
       {page}</span>;
   });
@@ -38,4 +38,3 @@ const Pages = (props) => {
 };
 
 export default Pages;
-;

@@ -12,29 +12,43 @@ const Profile = (props) => {
     return <div className={styles.preloader}><Preloader/></div>;
   }
   
-  const onPhotoUpload = (file) => {
-    props.uploadPhoto(file.target.files[0]);
-  };
+  const editButton = () =>{
+    if (!props.linkID || props.linkID == props.myID){
+      return <NavLink to="/edit">
+        <button className={styles.button}>Edit</button>
+      </NavLink>
+    }
+  }
+  
+  const uploadPhotoButton = () =>{
+    const onPhotoUpload = (file) => {
+      props.uploadPhoto(file.target.files[0]);
+    };
+    
+    if (!props.linkID || props.linkID == props.myID){
+      return <label className={styles.label}>
+        <input className={styles.uploader} onChange={onPhotoUpload} accept="image/x-png,image/jpeg" type='file'/>
+        upload photo
+      </label>
+    }
+  }
+  
+  
   return (
     <div className={styles.content}>
       <div className={styles.avatar}>
         <div className={styles.relative}>
           <img className={styles.photo} src={props.photo || MyPhoto} alt=""/><br/>
-          <label className={styles.label}>
-            <input className={styles.uploader} onChange={onPhotoUpload} accept="image/x-png,image/jpeg" type='file'/>
-            upload photo
-          </label>
+          {uploadPhotoButton()}
         </div>
-        {(!!props.linkID && props.linkID != props.myID) || <NavLink to="/edit">
-          <button className={styles.button}>Edit</button>
-        </NavLink>}
+        {editButton()}
       </div>
       
       <InfoContainer name={props.name} status={props.status} setNewStatus={props.setNewStatus} linkID={props.linkID}
                      myID={props.myID} getStatus={props.getStatus} aboutMe={props.aboutMe} contacts={props.contacts}
                      lookingForAJob={props.lookingForAJob} lookingForAJobDescription={props.lookingForAJobDescription}/>
       <Posts postsData={props.postsData} postInputText={props.postInputText} addPost={props.addPost}
-             updateText={props.updateText} login={props.login}/>
+             updateText={props.updateText} login={props.login} deletePost={props.deletePost}/>
     </div>
   );
 };

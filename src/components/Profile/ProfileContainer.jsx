@@ -1,7 +1,15 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import Profile from './Profile';
-import {addPost, getProfile, getStatus, setNewStatus, setProfile, uploadPhoto} from '../../state/profileReducer';
+import {
+  addPost,
+  deletePost,
+  getProfile,
+  getStatus,
+  setNewStatus,
+  setProfile,
+  uploadPhoto
+} from '../../state/profileReducer';
 import {withRouter} from 'react-router';
 import {compose} from 'redux';
 import {Redirect} from 'react-router-dom';
@@ -9,8 +17,7 @@ import {
   getAboutMe, getContacts, getLookingForAJobDescription, getLookingForAJobInfo,
   getName,
   getPhoto,
-  getPostsData,
-  getProfileFetchingInfo,
+  getProfileFetchingInfo, getStatePostsData,
   getStatusText
 } from '../../state/selectors/profileSelector';
 import {getAuthorizeInfo, getId, getLogin} from '../../state/selectors/authPageSelector';
@@ -22,6 +29,7 @@ const ProfileContainer = props=> {
   useEffect(()=> props.getProfile(id),[])
   
   useEffect(()=> props.getProfile(id),[props.isAuthorized])
+
   
   if (!props.isAuthorized && !props.match.params.id)
     return <Redirect to='/auth'/>;
@@ -29,11 +37,12 @@ const ProfileContainer = props=> {
     return <Profile {...props} linkID={props.match.params.id}/>;
 }
 
+
 const mapStateToProps = state => {
   return {
     name: getName(state),
     photo: getPhoto(state),
-    postsData: getPostsData(state),
+    postsData: getStatePostsData(state),
     myID: getId(state),
     isFetching: getProfileFetchingInfo(state),
     status: getStatusText(state),
@@ -65,6 +74,9 @@ const mapDispatchToProps = dispatch => {
     },
     uploadPhoto(file){
       dispatch(uploadPhoto(file))
+    },
+    deletePost(postID){
+      dispatch(deletePost(postID))
     }
   };
 };

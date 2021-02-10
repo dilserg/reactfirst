@@ -2,20 +2,29 @@ import React from 'react';
 import styles from './Posts.module.css';
 import {Form, Field} from 'react-final-form';
 import {required} from '../../forms/validators';
+import Post from './Post/Post';
+
+
 
 const Posts = (props) => {
+  let postsData = props.postsData.map((data) => {
+    return <Post name={data.name} key={data.postID} id={data.postID} time={data.date} content={data.content}
+                 likesCount={data.likesCount} ava={data.photo} deletePost={props.deletePost}/>
+  })
+
+  
   return (
     <div className={styles.posts}>
       <div>
-        <NewPostForm login={props.login} addPost={props.addPost}/>
+        <NewPostForm login={props.login}  addPost={props.addPost}/>
       </div>
-      {props.postsData}
+      {postsData}
     </div>
   );
 };
 
 const NewPostForm = props =>{
-  const onSubmit = (data,form)=>{
+  const onSubmit = (data)=>{
     props.addPost(data.postText,props.login)
     data.postText=''
   }

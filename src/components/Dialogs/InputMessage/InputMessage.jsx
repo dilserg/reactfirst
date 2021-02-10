@@ -6,7 +6,8 @@ import {Form, Field} from 'react-final-form';
 const InputMessageForm = props => {
   
   const onSubmit = data => {
-    props.sendMessage(data.messageText);
+    debugger
+    props.sendMessage(data.messageText,props.selectedId);
     data.messageText = '';
   };
   
@@ -23,7 +24,7 @@ const InputMessageForm = props => {
 const InputMessage = (props) => {
   return (
     <div className={styles.input}>
-      <InputMessageForm sendMessage={props.sendMessage}/>
+      <InputMessageForm selectedId={props.selectedId} sendMessage={props.sendMessage}/>
     </div>
   );
 };

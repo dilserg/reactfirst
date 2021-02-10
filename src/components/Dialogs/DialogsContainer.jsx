@@ -4,8 +4,12 @@ import {connect} from 'react-redux';
 import WithAuthRedirect from '../HOC/WithAuthRedirect';
 import {compose} from 'redux';
 import {getDialogMessages, getSidebarMessages} from '../../state/selectors/dialogsSelector';
+import {withRouter} from 'react-router';
 
 
+const DialogsContainer = (props) => {
+  return <Dialogs {...props}/>
+};
 
 
 let mapStateToProps = (state) => {
@@ -26,5 +30,6 @@ let mapDispatchToProps = (dispatch) => {
 
 export default compose(
   connect(mapStateToProps, mapDispatchToProps),
+  withRouter,
   WithAuthRedirect
-)(Dialogs)
+)(DialogsContainer)

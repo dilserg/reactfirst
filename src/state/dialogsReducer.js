@@ -1,4 +1,4 @@
-import MyPhoto from '../images/Male.png'
+import MyPhoto from '../images/Male.png';
 import FemalePhoto from '../images/Female.png';
 
 const initialState = {
@@ -8,20 +8,51 @@ const initialState = {
     {id: 3, name: 'Alexey', content: 'Hello'},
     {id: 4, name: 'Ekaterina', content: 'Hello'},
   ],
-  
+  selected: null,
   dialog: {
-    dialogMessages: [
-      {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
-      {name: 'Self', content: 'Hello!', photo: MyPhoto},
-      {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
-      {name: 'Self', content: 'Hello!', photo: MyPhoto},
-      {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
-      {name: 'Self', content: 'Hello!', photo: MyPhoto},
-      {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
-      {name: 'Self', content: 'Hello!', photo: MyPhoto},
-      {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
-      {name: 'Self', content: 'Hello!', photo: MyPhoto},
-    ],
+    dialogMessages: {
+        id1: [
+          {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Nadezhda', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},],
+        id2:[{name: 'Ivan', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Ivan', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Ivan', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Ivan', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Ivan', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},],
+        id3:[{name: 'Alexey', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Alexey', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Alexey', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Alexey', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Alexey', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},],
+        id4:[{name: 'Ekaterina', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Ekaterina', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Ekaterina', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Ekaterina', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},
+          {name: 'Ekaterina', content: 'hello,friend!', photo: FemalePhoto},
+          {name: 'Self', content: 'Hello!', photo: MyPhoto},]
+      }
   },
 };
 
@@ -31,13 +62,19 @@ const dialogsReducer = (state = initialState, action) => {
   let stateCopy;
   switch (action.type) {
     
+    case 'SELECT_DIALOG':
+      return {
+        ...state,
+        selected: action.id
+      };
+    
     case 'SEND-MESSAGE':
       stateCopy = {...state};
-      stateCopy.dialog.dialogMessages = [...state.dialog.dialogMessages];
-      
+      debugger
+      stateCopy.dialog.dialogMessages = {...state.dialog.dialogMessages};
       let text = action.messageText.trim();
       if (text) {
-        stateCopy.dialog.dialogMessages.push({
+        stateCopy.dialog.dialogMessages['id' + action.id].push({
           name: 'Self',
           content: text,
           photo: MyPhoto
@@ -63,6 +100,8 @@ const dialogsReducer = (state = initialState, action) => {
 };
 
 
-export const sendMessageAC = (messageText) => ({type: 'SEND-MESSAGE', messageText});
+export const sendMessageAC = (messageText, id) => ({type: 'SEND-MESSAGE', messageText, id});
+
+export const selectDialog = id => ({type: 'SELECT_DIALOG', id});
 
 export default dialogsReducer;

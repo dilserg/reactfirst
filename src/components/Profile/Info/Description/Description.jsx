@@ -5,7 +5,6 @@ import FullInfo from './FullInfo';
 
 const Description = (props) => {
   
-  
   const [isFullInfo, setFullInfo] = useState(false);
   
   const showFull = () => {

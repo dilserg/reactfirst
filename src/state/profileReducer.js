@@ -24,6 +24,7 @@ const initialState = {
   },
   
   posts: {
+    newPostID:0,
     postsData: [],
     postInputText: '',
   },
@@ -41,7 +42,9 @@ const profileReducer = (state = initialState, action) => {
       const text = action.postText.trim();
       if (text) {
         stateCopy.posts = {
+          newPostID:state.posts.newPostID + 1,
           postsData: [{
+            postID:state.posts.newPostID,
             name: action.name,
             date: `${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()} ${date.getHours()}:${date.getMinutes()}`,
             content: text,
@@ -54,7 +57,6 @@ const profileReducer = (state = initialState, action) => {
     
     
     case 'SET-PROFILE':
-      debugger
       stateCopy = {...state};
       stateCopy.info = {
         ...state.info,
@@ -98,6 +100,15 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         info:{personInfo: {photo: action.photo}}
       }
+      
+    case 'DELETE-POST':
+      return {
+        ...state,
+        posts:{
+          ...state.posts,
+          postsData: state.posts.postsData.filter((post) => post.postID !== action.postID)
+        }
+      }
     
     default:
       return state;
@@ -108,7 +119,7 @@ export default profileReducer;
 
 export const setProfile = (data) => ({type: 'SET-PROFILE', data});
 
-export const addPost = (postText, name) => ({type: 'ADD-POST', postText, name});
+export const addPost = (postText, name  ) => ({type: 'ADD-POST', postText, name});
 
 export const setStatus = status => ({type: 'SET-STATUS', status});
 
@@ -116,6 +127,7 @@ const toggleProfileFetching = (isFetching) => ({type: 'TOGGLE-PROFILE-FETCHING',
 
 const setNewPhoto = (photo) => ({type:'SET-NEW-PHOTO', photo})
 
+export const deletePost = (postID) => ({type:'DELETE-POST', postID})
 
 export const getProfile = (id) => async dispatch => {
   dispatch(toggleProfileFetching(true));

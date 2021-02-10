@@ -6,7 +6,7 @@ const Contact = ({link, title}) => {
     return (
       <p className={styles.item}>
         <span className={styles.dim}>{title}:</span>
-        <a href={link} className={styles.contact}>{link}</a>
+        <a target='_blank' rel="noreferrer" href={`https://${link}`} className={styles.contact}>{link}</a>
       </p>
     );
   return <></>;

@@ -2,16 +2,19 @@ import React from 'react';
 import {sendMessageAC} from '../../../state/dialogsReducer';
 import InputMessage from './InputMessage';
 import {connect} from 'react-redux';
+import {getSelectedDialog} from '../../../state/selectors/dialogsSelector';
 
 
 let mapStateToProps = (state) => {
-
+  return {
+    selectedId:getSelectedDialog(state)
+  }
 };
 
 let mapDispatchToProps = (dispatch) => {
   return {
-    sendMessage(messageText) {
-      dispatch(sendMessageAC(messageText));
+    sendMessage(messageText,id) {
+      dispatch(sendMessageAC(messageText,id));
     },
   };
 };
